@@ -1,0 +1,60 @@
+﻿using ServiciosEntidades;
+using DAL;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
+
+namespace SERVICIOS
+{
+    public class Sesion
+    {
+        public Usuario Usuario;
+        private static Sesion instancia;
+        public static Sesion Instancia
+        {
+            get
+            {
+                if (instancia == null) instancia = new Sesion();
+                return instancia;
+            }
+        }
+        private string IdiomaSesion = "Español";
+
+        public void LogIn(Usuario pUsuario)
+        {
+            Usuario = pUsuario;
+            Usuario.Intentos = 0;
+            LectorDatos.Datos.ActualizarIntentos(Usuario.Intentos, Usuario.DNI);
+            //Usuario.Permisos = GestorPermiso.Instancia.CargarPermisosUsuario(pUsuario.DNI);
+        }
+        public void LogOut()
+        {
+            if (Usuario != null)
+            {
+                Usuario = null;
+            }
+        }
+        public bool IsLogueado()
+        {
+            return Usuario == null ? false : true;
+        }
+
+        public bool Verificar(string pEmail, string pContra)
+        {
+            return GestorBD.Instancia.ValidarUsuario(pEmail, pContra);
+        }
+        public string ObtenerIdiomaSesion()
+        {
+            return IdiomaSesion;
+        }
+        public void EstablecerIdioma(string nuevoIdioma)
+        {
+            IdiomaSesion = nuevoIdioma;
+            Traductor.Instancia.CargarTraducciones(this, nuevoIdioma);
+        }
+    }
+}

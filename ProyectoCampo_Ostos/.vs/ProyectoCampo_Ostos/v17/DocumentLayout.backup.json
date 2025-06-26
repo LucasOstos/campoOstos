@@ -1,0 +1,166 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Proyecto\\ProyectoCampo_Ostos\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\dal\\permisosbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|solutionrelative:dal\\permisosbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\bll\\gestorpermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|solutionrelative:bll\\gestorpermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\proyectocampo_ostos\\gui\\guiagregarproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guiagregarproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\bll\\gestorcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|solutionrelative:bll\\gestorcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\bll\\gestorproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|solutionrelative:bll\\gestorproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\gui\\guiagregarproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guiagregarproducto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\dal\\lectordatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|solutionrelative:dal\\lectordatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\ProyectoCampo_Ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GuiAgregarProducto.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiAgregarProducto.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiAgregarProducto.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiAgregarProducto.cs [Dise\u00F1o]",
+              "RelativeToolTip": "GUI\\GuiAgregarProducto.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T01:44:38.878Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GuiAgregarProducto.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiAgregarProducto.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiAgregarProducto.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiAgregarProducto.cs",
+              "RelativeToolTip": "GUI\\GuiAgregarProducto.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAwwEcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T17:48:37.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GestorProducto.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorProducto.cs",
+              "RelativeDocumentMoniker": "BLL\\GestorProducto.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorProducto.cs",
+              "RelativeToolTip": "BLL\\GestorProducto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwB0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T17:39:57.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LectorDatos.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\DAL\\LectorDatos.cs",
+              "RelativeDocumentMoniker": "DAL\\LectorDatos.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\DAL\\LectorDatos.cs",
+              "RelativeToolTip": "DAL\\LectorDatos.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T17:45:44.545Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GestorCarrito.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorCarrito.cs",
+              "RelativeDocumentMoniker": "BLL\\GestorCarrito.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorCarrito.cs",
+              "RelativeToolTip": "BLL\\GestorCarrito.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T17:40:10.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestorPermiso.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorPermiso.cs",
+              "RelativeDocumentMoniker": "BLL\\GestorPermiso.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\BLL\\GestorPermiso.cs",
+              "RelativeToolTip": "BLL\\GestorPermiso.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAWwDQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T19:13:39.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PermisosBD.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\DAL\\PermisosBD.cs",
+              "RelativeDocumentMoniker": "DAL\\PermisosBD.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\DAL\\PermisosBD.cs",
+              "RelativeToolTip": "DAL\\PermisosBD.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAgBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T19:04:25.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GuiPermisos.cs",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAA4wIcAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T19:04:14.295Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GuiPermisos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T19:04:09.463Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
