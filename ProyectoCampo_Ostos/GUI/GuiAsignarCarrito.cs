@@ -22,8 +22,10 @@ namespace GUI
         }
         private void GuiAsignarCarrito_Load(object sender, EventArgs e)
         {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
             MostrarClientes();
-            TraducirDGV();
+            ActualizarIdioma();
             DeshabilitarTB();
         }
         
@@ -49,7 +51,7 @@ namespace GUI
                         MessageBox.Show(Traducir("MsgAsignacion"));
                         tbCodCarrito.Enabled = false;
                         
-                        GestorFormulario.Instancia.GetGuiAsignar().Close();
+                        this.Close();
                     }
                     else { MessageBox.Show("El carrito ya tiene dueño"); }
                 }
@@ -60,7 +62,7 @@ namespace GUI
 
         private void btnSalirAsignar_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiAsignar().Close();
+            GestorFormulario.Instancia.ObtenerGui().Close();
         }
         
         #region Funciones
@@ -89,10 +91,6 @@ namespace GUI
         #region Idiomas
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(TextBox))
@@ -109,7 +107,7 @@ namespace GUI
                 }
             }
             TraducirDGV();
-        }
+        }        
         private void TraducirDGV()
         {
             dataGridView1.Columns[0].HeaderText = Traductor.Instancia.Traducir("Cliente_DNI");

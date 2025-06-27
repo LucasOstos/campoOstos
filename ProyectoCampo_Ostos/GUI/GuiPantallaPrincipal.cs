@@ -23,29 +23,16 @@ namespace GUI
         }
         private void GuiPantallaPrincipal_Load(object sender, EventArgs e)
         {
-            ActualizarIdioma();
-            Vista();
-            //SuscribirFormularios();
             Traductor.Instancia.Suscribir(this);
             Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
+            ActualizarIdioma();
+            Vista();
         }
-        #region Funciones
-        private void TraducirLabels()
-        {
-            string T1 = Traducir("labelUsuario");
-            string T2 = Traducir("labelRol");
-            labelSesion.Text = T1.Replace("{usuario}", $"{Sesion.Instancia.Usuario.Nombre} {Sesion.Instancia.Usuario.Apellido}") + Environment.NewLine +
-                          T2.Replace("{rol}", Sesion.Instancia.Usuario.Tipo);
-        }
+        #region Funciones        
         /*private void SuscribirFormularios()
-        {
-            
-            //Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiProducto());
+        {            
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiAsignar());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiVenta());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiFactura());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiClientes());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiUsuarios());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiPermisos());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiContrasenia());
         }*/
@@ -96,7 +83,10 @@ namespace GUI
         
         private void perfilesItem_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiPermisos().ShowDialog();
+            this.Hide();
+            GuiPermisos guiPermisos = new GuiPermisos();
+            guiPermisos.ShowDialog();
+            this.Show();
         }
         
         private void usuariosItem_Click(object sender, EventArgs e)
@@ -125,17 +115,25 @@ namespace GUI
 
         private void carritoItem_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiAsignar().ShowDialog();
+            this.Hide();
+            GestorFormulario.Instancia.ObtenerGui().ShowDialog();
+            this.Show();
         }
 
         private void clientesItem_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiClientes().ShowDialog();
+            this.Hide();
+            GuiGestionClientes guiClientes = new GuiGestionClientes();
+            guiClientes.ShowDialog();
+            this.Show();
         }
 
         private void facturaItem_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiFactura().ShowDialog();
+            this.Hide();
+            GuiFactura guiFactura = new GuiFactura();
+            guiFactura.ShowDialog();
+            this.Show();
         }
         #endregion
 
@@ -165,6 +163,13 @@ namespace GUI
                     c.Text = Traducir(c.Name);
                 }
             }
+        }
+        private void TraducirLabels()
+        {
+            string T1 = Traducir("labelUsuario");
+            string T2 = Traducir("labelRol");
+            labelSesion.Text = T1.Replace("{usuario}", $"{Sesion.Instancia.Usuario.Nombre} {Sesion.Instancia.Usuario.Apellido}") + Environment.NewLine +
+                          T2.Replace("{rol}", Sesion.Instancia.Usuario.Tipo);
         }
         private string Traducir(string paraTraducir)
         {

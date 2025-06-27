@@ -22,8 +22,10 @@ namespace GUI
         }
         private void GuiGestionClientes_Load(object sender, EventArgs e)
         {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
             MostrarClientes();
-            TraducirDGV();
+            ActualizarIdioma();
         }
 
         #region Funciones
@@ -148,7 +150,7 @@ namespace GUI
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiClientes().Close();
+            this.Close();
         }
 
         #region Eventos
@@ -190,10 +192,6 @@ namespace GUI
         }
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(TextBox))
@@ -210,12 +208,11 @@ namespace GUI
                 }
             }
             TraducirDGV();
-        }
+        }        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);
         }
-
         #endregion
 
     }

@@ -25,8 +25,8 @@ namespace GUI
         }
         private void InterfazInicioSesion_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "lucas.ostos28@gmail.com";
-            textBox2.Text = "usuarioMemoria";
+            textBox1.Text = "lucas@gmail.com";
+            textBox2.Text = "vendedor1";
         }
         private void button1_Click(object sender, EventArgs e)
         {

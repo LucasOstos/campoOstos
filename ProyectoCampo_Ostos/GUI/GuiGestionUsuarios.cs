@@ -22,6 +22,8 @@ namespace GUI
         }
         private void GuiGestionUsuarios_Load(object sender, EventArgs e)
         {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
             MostrarUsuarios();
             ActualizarIdioma();
             CargarRoles();
@@ -29,73 +31,6 @@ namespace GUI
             CancelarCambios.Enabled = false;
             DesbloquearUsuario.Enabled = false;
         }
-
-        #region Funciones
-        private void LimpiarTextBox()
-        {
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            cbRoles.Text = "";
-        }
-        private void BloquearTextBox()
-        {
-            textBox1.Enabled = false;
-            textBox2.Enabled = false;
-            textBox3.Enabled = false;
-            textBox4.Enabled = false;
-            cbRoles.Enabled = false;
-        }
-        private void DesbloquearTextBox()
-        {
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-            textBox3.Enabled = true;
-            textBox4.Enabled = true;
-            cbRoles.Enabled = true;
-        }
-        public void MostrarBloqueados()
-        {
-            dgvUsuarios.Rows.Clear();
-            if (GestorUsuario.Instancia.ReturnBloqueados().Count() > 0)
-            {
-                foreach (Usuario U in GestorUsuario.Instancia.ReturnBloqueados())
-                {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
-                }
-            }
-        }
-        public void MostrarUsuarios()
-        {
-            dgvUsuarios.Rows.Clear();
-            if(GestorUsuario.Instancia.ReturnUsuarios().Count() > 0)
-            {
-                foreach(Usuario U in GestorUsuario.Instancia.ReturnUsuarios())
-                {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
-                }
-            }
-        }
-        private void CargarRoles()
-        {            
-            cbRoles.Items.Clear();
-            cbRoles.DisplayMember = "Nombre";
-            foreach (Permiso P in GestorPermiso.Instancia.Perfiles())
-            {
-                cbRoles.Items.Add(P);
-            }
-        }
-        public bool EsEmailValido(string email)
-        {
-            string patronEmail = @"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook|yahoo)\.com$";
-            return Regex.IsMatch(email, patronEmail);
-        }
-        private bool UsuarioDuplicado(int pDNI)
-        {
-            return GestorUsuario.Instancia.ReturnUsuarios().Exists(x => x.DNI == pDNI);
-        }
-        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -270,6 +205,73 @@ namespace GUI
         {
             this.Close();
         }
+        
+        #region Funciones
+        private void LimpiarTextBox()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            cbRoles.Text = "";
+        }
+        private void BloquearTextBox()
+        {
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+            cbRoles.Enabled = false;
+        }
+        private void DesbloquearTextBox()
+        {
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+            textBox4.Enabled = true;
+            cbRoles.Enabled = true;
+        }
+        public void MostrarBloqueados()
+        {
+            dgvUsuarios.Rows.Clear();
+            if (GestorUsuario.Instancia.ReturnBloqueados().Count() > 0)
+            {
+                foreach (Usuario U in GestorUsuario.Instancia.ReturnBloqueados())
+                {
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
+                }
+            }
+        }
+        public void MostrarUsuarios()
+        {
+            dgvUsuarios.Rows.Clear();
+            if(GestorUsuario.Instancia.ReturnUsuarios().Count() > 0)
+            {
+                foreach(Usuario U in GestorUsuario.Instancia.ReturnUsuarios())
+                {
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
+                }
+            }
+        }
+        private void CargarRoles()
+        {            
+            cbRoles.Items.Clear();
+            cbRoles.DisplayMember = "Nombre";
+            foreach (Permiso P in GestorPermiso.Instancia.Perfiles())
+            {
+                cbRoles.Items.Add(P);
+            }
+        }
+        public bool EsEmailValido(string email)
+        {
+            string patronEmail = @"^[a-zA-Z0-9._%+-]+@(gmail|hotmail|outlook|yahoo)\.com$";
+            return Regex.IsMatch(email, patronEmail);
+        }
+        private bool UsuarioDuplicado(int pDNI)
+        {
+            return GestorUsuario.Instancia.ReturnUsuarios().Exists(x => x.DNI == pDNI);
+        }
+        #endregion
 
         #region Eventos
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -360,8 +362,7 @@ namespace GUI
                 }
             }
             TraducirDGV();
-        }
-        
+        }        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);

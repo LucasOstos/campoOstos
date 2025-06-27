@@ -21,7 +21,12 @@ namespace GUI
         {
             InitializeComponent();
         }
-        private void GuiFactura_Load(object sender, EventArgs e) { }
+        private void GuiFactura_Load(object sender, EventArgs e)
+        {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
+            ActualizarIdioma();
+        }
         
         private void btnCargarFactura_Click(object sender, EventArgs e)
         {
@@ -49,15 +54,16 @@ namespace GUI
                 GestorFactura.Instancia.GuardarFactura(clienteFactura, factura);
                 MessageBox.Show(Traducir("MsgFactura"));
                 this.Hide();
-                GestorFormulario.Instancia.GetGuiFactura().Close();
-                GestorFormulario.Instancia.GetGuiVenta().ShowDialog();
+                GuiCobrarVenta guiVenta = new GuiCobrarVenta();
+                guiVenta.ShowDialog();
+                this.Close();
             }
             else { MessageBox.Show("Factura no cargada"); }
         }
         
         private void botonSalirFactura_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiFactura().Close();
+            this.Close();
         }
 
         #region Funciones
@@ -76,10 +82,6 @@ namespace GUI
         #region Idiomas       
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(TextBox))
@@ -95,7 +97,7 @@ namespace GUI
                     c.Text = Traducir(c.Name);
                 }
             }
-        }
+        }        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);

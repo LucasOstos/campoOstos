@@ -17,8 +17,13 @@ namespace GUI
     {
         public GuiCobrarVenta()
         {
-            InitializeComponent();
-            TraducirDGV();
+            InitializeComponent();            
+        }
+        private void GuiCobrarVenta_Load(object sender, EventArgs e)
+        {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
+            ActualizarIdioma();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,8 +95,7 @@ namespace GUI
                     MessageBox.Show(Traducir("MsgGrillaVacia"));
                 }
             } 
-        }
-        
+        }        
         private void button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -113,11 +117,10 @@ namespace GUI
                     MessageBox.Show(Traducir($"MsgBusquedaCarrito"));
                 }
             }
-        }        
-        
+        }                
         private void btnSalirVenta_Click(object sender, EventArgs e)
         {
-            GestorFormulario.Instancia.GetGuiVenta().Close();
+            this.Close();
         }
         
         #region Funciones
@@ -157,13 +160,9 @@ namespace GUI
         }
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
-                if(c.GetType() != typeof(TextBox))
+                if (c.GetType() != typeof(TextBox))
                 {
                     if (c.GetType() != typeof(Label))
                     {
@@ -180,7 +179,7 @@ namespace GUI
                 }
             }
             TraducirDGV();
-        }
+        }        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);
@@ -262,6 +261,6 @@ namespace GUI
             }
         }
         #endregion
-        
+
     }
 }

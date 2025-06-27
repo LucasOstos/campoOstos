@@ -372,6 +372,7 @@
             this.Controls.Add(this.botonCobrarVenta);
             this.Name = "GuiCobrarVenta";
             this.Text = "Form4";
+            this.Load += new System.EventHandler(this.GuiCobrarVenta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

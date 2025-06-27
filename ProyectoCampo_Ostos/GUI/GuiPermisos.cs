@@ -23,6 +23,9 @@ namespace GUI
         }
         private void GuiPermisos_Load(object sender, EventArgs e)
         {
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
+            ActualizarIdioma();
             CargarPermisosFamilia();
             CargarFamilias();
             CargarPerfiles();
@@ -188,7 +191,6 @@ namespace GUI
             MessageBox.Show("Perfil eliminado correctamente.");
             CargarPerfiles();
         }
-
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
             /*if (tbNombrePerfil.Text == "")
@@ -214,7 +216,6 @@ namespace GUI
                 }
             }*/
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -222,10 +223,6 @@ namespace GUI
 
         #region Idiomas
         public void ActualizarIdioma()
-        {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
         {
             foreach (Control c in Controls)
             {
@@ -244,7 +241,7 @@ namespace GUI
                     }
                 }
             }
-        }
+        }        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);
