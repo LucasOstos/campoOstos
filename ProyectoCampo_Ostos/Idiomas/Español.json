@@ -82,6 +82,8 @@
     "Usuario_Rol": "Rol",
     "Usuario_Contrasenia": "Contraseña",
     "Usuario_Habilitado": "Habilitado",
+    "Usuario_UltimoLogin": "Último login",
+    "Usuario_Idioma": "Idioma",
     "MsgUsuarioDesbloqueado": "Usuario desbloqueado",
     "MsgConfirmarUsuario": "Desea crear al usuario?",
     "MsgUsuarioOK": "Usuario creado correctamente",
@@ -155,10 +157,12 @@
     "MsgAsignacion": "Carrito asignado correctamente",
     "MsgCodigoNulo": "Ingrese un codigo para el carrito",
 
-    "buttonSalirGuiProducto": "Salir",
+    // *** GUI AGREGAR PRODUCTO *** TRADUCCION COMPLETA
     "labelBusquedaProducto": "Buscador de Productos",
-    "buttonAgregarProdCarrito": "Agregar Producto a Carrito",
-    "buttonBuscarProductos": "Buscar Producto",
+    "btnFinBusqueda": "Finalizar Busqueda",
+    "btnAgregarProducto": "Agregar Producto a Carrito",
+    "rbNombreProducto": "Nombre",
+    "rbTipoProducto": "Tipo",
     "Prod_Codigo": "Codigo",
     "Prod_Nombre": "Nombre",
     "Prod_Marca": "Marca",
@@ -166,8 +170,10 @@
     "Prod_Cantidad": "Cantidad",
     "Prod_Precio": "Precio",
     "MsgProductoCarrito": "Seleccione un producto para agregar al carrito",
+    "MsgCarritoNoAsignado": "Debe asignarle el carrito a un cliente",
     "MsgProductoAgregado": "El producto ya ha sido agregado al carrito",
     "MsgBusquedaFinalizada": "Busqueda Finalizada",
+    // *** FIN GUI AGREGAR PRODUCTO *** TRADUCCION COMPLETA
 
     "labelContrasenia": "Contraseña nueva",
     "labelConfirmacion": "Confirmar contraseña",

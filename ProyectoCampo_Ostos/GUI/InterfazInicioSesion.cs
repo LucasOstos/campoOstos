@@ -16,12 +16,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace GUI
 {
-    public partial class InterfazInicioSesion : Form, IObserver
+    public partial class InterfazInicioSesion : Form //IObserver
     {
         public InterfazInicioSesion()
         {
             InitializeComponent();
-            SuscribirFormulario();
+            //SuscribirFormulario();
         }
         private void InterfazInicioSesion_Load(object sender, EventArgs e)
         {
@@ -32,10 +32,11 @@ namespace GUI
         {
             if(!Sesion.Instancia.IsLogueado())
             {
-                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administador General", true, true, 0, true, DateTime.Now);
+                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administador General", true, true, 0, true, DateTime.Now, "Ingles");
                 if (textBox1.Text == "lucas.ostos28@gmail.com" && textBox2.Text == "usuarioMemoria")
                 {
                     Sesion.Instancia.LogIn(usuarioMemoria);
+                    Sesion.Instancia.IdiomaSesion = usuarioMemoria.Idioma;
                     this.Hide();
                     GuiPantallaPrincipal frmPS = new GuiPantallaPrincipal();
                     frmPS.ShowDialog();
@@ -59,7 +60,7 @@ namespace GUI
                                 {
                                     if (u.cambioContrasenia == true)
                                     {
-                                        Sesion.Instancia.LogIn(u);
+                                        Sesion.Instancia.LogIn(u);                                        
                                         this.Hide();
                                         GuiPantallaPrincipal frmPS = new GuiPantallaPrincipal();
                                         frmPS.ShowDialog();
@@ -86,7 +87,7 @@ namespace GUI
                             {
                                 GestorUsuario.Instancia.BloquearUsuario(true, u.DNI);
                             }
-                            MessageBox.Show(Traducir("MsgContraseñaIncorrecta"));
+                            //MessageBox.Show(Traducir("MsgContraseñaIncorrecta"));
                         }
                     }
                 }
@@ -112,7 +113,7 @@ namespace GUI
             }
         }
         #region Idiomas
-        private void SuscribirFormulario()
+        /*private void SuscribirFormulario()
         {
             Traductor.Instancia.Suscribir(this);
         }
@@ -149,51 +150,51 @@ namespace GUI
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);
-        }
+        }*/
         private void EspanolMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Español");
             }
-            else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
+            else { MessageBox.Show(""); }
         }
         private void InglesMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Ingles");
             }
-            else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
+            else { MessageBox.Show(""); }
         }
         private void FrancesMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Francés");
             }
-            else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
+            else { MessageBox.Show(""); }
         }
         private void AlemanMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Alemán");
             }
-            else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
+            else { MessageBox.Show(""); }
         }
         private void PortuguesMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Portugués");
             }
-            else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
+            else { MessageBox.Show(""); }
         }
 
         #endregion

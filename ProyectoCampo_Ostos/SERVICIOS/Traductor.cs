@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ServiciosEntidades;
 
 namespace SERVICIOS
 {
@@ -25,32 +26,29 @@ namespace SERVICIOS
         }
         List<IObserver> listaObservadores;
         Dictionary<string, string> traducciones;
-        string Idioma;
-        string DireccionArchivoJson;
-        string ContenidoArchivoJson;
         public Traductor()
         {
             listaObservadores = new List<IObserver>();
-            Idioma = "Español";
-            DireccionArchivoJson = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{Idioma}.json"));
-            ContenidoArchivoJson = File.ReadAllText(DireccionArchivoJson);
-            traducciones = JsonConvert.DeserializeObject<Dictionary<string, string>>(ContenidoArchivoJson);
+            string Idioma = Sesion.Instancia.Usuario.Idioma;
+            string rutaJson = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{Idioma}.json"));
+            string contenidoJson = File.ReadAllText(rutaJson);
+            traducciones = JsonConvert.DeserializeObject<Dictionary<string, string>>(contenidoJson);
         }
         public void CargarTraducciones(object sender, string nuevoIdioma)
         {
             if (File.Exists(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{nuevoIdioma}.json"))))
             {
-                DireccionArchivoJson = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{nuevoIdioma}.json"));
-                ContenidoArchivoJson = File.ReadAllText(DireccionArchivoJson);
+                string rutaJson = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{nuevoIdioma}.json"));
+                string contenidoJson = File.ReadAllText(rutaJson);
                 traducciones.Clear();
-                traducciones = JsonConvert.DeserializeObject<Dictionary<string, string>>(ContenidoArchivoJson);
+                traducciones = JsonConvert.DeserializeObject<Dictionary<string, string>>(contenidoJson);
             }
         }
         public string Traducir(string paraTraducir)
         {
             try
             {
-                if (traducciones.Count == 0) CargarTraducciones(null, "Español");
+                if (traducciones.Count == 0) CargarTraducciones(null, Sesion.Instancia.Usuario.Idioma);
                 string translation = "";
                 return translation = traducciones[paraTraducir];
             }

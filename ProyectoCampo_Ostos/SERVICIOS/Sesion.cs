@@ -22,12 +22,13 @@ namespace SERVICIOS
                 return instancia;
             }
         }
-        private string IdiomaSesion = "Español";
+        public string IdiomaSesion;
 
         public void LogIn(Usuario pUsuario)
         {
             Usuario = pUsuario;
             Usuario.Intentos = 0;
+            IdiomaSesion = Usuario.Idioma;
             LectorDatos.Datos.ActualizarIntentos(Usuario.Intentos, Usuario.DNI);
             //Usuario.Permisos = GestorPermiso.Instancia.CargarPermisosUsuario(pUsuario.DNI);
         }
@@ -35,6 +36,7 @@ namespace SERVICIOS
         {
             if (Usuario != null)
             {
+                LectorDatos.Datos.ActualizarIdiomaUsuario(IdiomaSesion, Usuario);
                 Usuario = null;
             }
         }
@@ -42,7 +44,7 @@ namespace SERVICIOS
         {
             return Usuario == null ? false : true;
         }
-
+        
         public bool Verificar(string pEmail, string pContra)
         {
             return GestorBD.Instancia.ValidarUsuario(pEmail, pContra);

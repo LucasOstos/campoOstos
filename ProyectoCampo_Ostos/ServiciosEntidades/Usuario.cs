@@ -19,8 +19,9 @@ namespace ServiciosEntidades
         public int Intentos { get; set; }
         public bool cambioContrasenia { get; set; }
         public DateTime ultimoLogin { get; set; }
+        public string Idioma {  get; set; }
         public List<Permiso> Permisos { get; set; }
-        public Usuario(int pDNI, string pNombre, string pApellido, string pEmail, string pContraseña, string pTipo, bool pHabilitado, bool pEstado, int pIntentos, bool pCambioContrasenia, DateTime pUltimoLogin)
+        public Usuario(int pDNI, string pNombre, string pApellido, string pEmail, string pContraseña, string pTipo, bool pHabilitado, bool pEstado, int pIntentos, bool pCambioContrasenia, DateTime pUltimoLogin, string pIdioma)
         {
             DNI = pDNI;
             Nombre = pNombre;
@@ -31,9 +32,10 @@ namespace ServiciosEntidades
             IsHabilitado = pHabilitado;
             Estado = pEstado;
             Intentos = pIntentos;
-            this.cambioContrasenia = pCambioContrasenia;
-            this.ultimoLogin = pUltimoLogin;
-            Permisos = new List<Permiso>(); // Inicializamos la lista de permisos
+            cambioContrasenia = pCambioContrasenia;
+            ultimoLogin = pUltimoLogin;
+            Idioma = pIdioma;
+            Permisos = new List<Permiso>();
         }
         public Usuario()
         {

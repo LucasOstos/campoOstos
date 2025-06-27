@@ -20,7 +20,11 @@ namespace GUI
         {
             InitializeComponent();            
         }
-        private void Form1_Load(object sender, EventArgs e) { TraducirDGV(); }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Traductor.Instancia.Suscribir(this);
+            ActualizarIdioma();
+        }
 
         #region Funciones
         private void MostrarProductosPorTipo(string Tipo)
@@ -69,7 +73,7 @@ namespace GUI
                     GestorCarrito.Instancia.AgregarProductoCarrito(producto);
                     MostrarCarrito();
                 }
-                else { MessageBox.Show("Debe asignarle el carrito a un cliente"); }
+                else { MessageBox.Show(Traducir("MsgCarritoNoAsignado")); }
             }
             else
             {
@@ -98,10 +102,6 @@ namespace GUI
         }
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(TextBox))
@@ -119,6 +119,7 @@ namespace GUI
             }
             TraducirDGV();
         }
+        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);

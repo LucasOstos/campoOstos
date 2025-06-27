@@ -16,18 +16,18 @@ using BE;
 namespace GUI
 {
     public partial class GuiPantallaPrincipal : Form, IObserver
-    { 
-        InterfazInicioSesion login = new InterfazInicioSesion();
+    {
         public GuiPantallaPrincipal()
         {
             InitializeComponent();                        
         }
         private void GuiPantallaPrincipal_Load(object sender, EventArgs e)
         {
-            TraducirLabels();
+            ActualizarIdioma();
             Vista();
-            SuscribirFormularios();
-            Traductor.Instancia.Notificar(login.MainMenuStrip.Text);
+            //SuscribirFormularios();
+            Traductor.Instancia.Suscribir(this);
+            Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
         }
         #region Funciones
         private void TraducirLabels()
@@ -37,10 +37,10 @@ namespace GUI
             labelSesion.Text = T1.Replace("{usuario}", $"{Sesion.Instancia.Usuario.Nombre} {Sesion.Instancia.Usuario.Apellido}") + Environment.NewLine +
                           T2.Replace("{rol}", Sesion.Instancia.Usuario.Tipo);
         }
-        private void SuscribirFormularios()
+        /*private void SuscribirFormularios()
         {
-            Traductor.Instancia.Suscribir(this);
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiProducto());
+            
+            //Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiProducto());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiAsignar());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiVenta());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiFactura());
@@ -48,7 +48,7 @@ namespace GUI
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiUsuarios());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiPermisos());
             Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiContrasenia());
-        }
+        }*/
         public void Vista()
         {
             if(Sesion.Instancia.Usuario.Tipo == "Vendedor")
@@ -66,6 +66,7 @@ namespace GUI
         }
         #endregion
 
+        #region Items MenuStrip
         private void loginItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -136,6 +137,7 @@ namespace GUI
         {
             GestorFormulario.Instancia.GetGuiFactura().ShowDialog();
         }
+        #endregion
 
         #region Idiomas
         public void ActualizarIdioma()
@@ -148,18 +150,7 @@ namespace GUI
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(Label))
-                {
-                    if(c.GetType() == typeof(Button))
-                    {
-                        c.Text = Traducir(c.Name);
-                    }
-                    if(c.GetType() == typeof(FlowLayoutPanel))
-                    {
-                        foreach(Control C in (c as FlowLayoutPanel).Controls)
-                        {
-                            C.Text = Traducir(C.Name);
-                        }
-                    }
+                {                                      
                     if (c.GetType() == typeof(MenuStrip))
                     {
                         foreach (ToolStripMenuItem item in (c as MenuStrip).Items)

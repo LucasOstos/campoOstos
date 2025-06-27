@@ -34,7 +34,7 @@ namespace DAL
                     while (DR.Read())
                     {
                         Usuario U = new Usuario(int.Parse(DR[0].ToString()), DR[1].ToString(), DR[2].ToString(), DR[3].ToString(), DR[4].ToString(),
-                                                DR[5].ToString(), Convert.ToBoolean(DR[6].ToString()), Convert.ToBoolean(DR[7].ToString()), int.Parse(DR[8].ToString()), Convert.ToBoolean(DR[9].ToString()), Convert.ToDateTime(DR[10].ToString()));
+                                                DR[5].ToString(), Convert.ToBoolean(DR[6].ToString()), Convert.ToBoolean(DR[7].ToString()), int.Parse(DR[8].ToString()), Convert.ToBoolean(DR[9].ToString()), Convert.ToDateTime(DR[10].ToString()), DR[11].ToString());
                         listaUsuarios.Add(U);
                     }
                 }
@@ -54,7 +54,7 @@ namespace DAL
                     while (DR.Read())
                     {
                         Usuario U = new Usuario(int.Parse(DR[0].ToString()), DR[1].ToString(), DR[2].ToString(), DR[3].ToString(), DR[4].ToString(),
-                                                DR[5].ToString(), Convert.ToBoolean(DR[6].ToString()), Convert.ToBoolean(DR[7].ToString()), int.Parse(DR[8].ToString()), Convert.ToBoolean(DR[9].ToString()), Convert.ToDateTime(DR[10].ToString()));
+                                                DR[5].ToString(), Convert.ToBoolean(DR[6].ToString()), Convert.ToBoolean(DR[7].ToString()), int.Parse(DR[8].ToString()), Convert.ToBoolean(DR[9].ToString()), Convert.ToDateTime(DR[10].ToString()), DR[11].ToString());
                         listaUsuariosBloqueados.Add(U);
                     }
                 }
@@ -64,7 +64,7 @@ namespace DAL
         }
         public void AgregarUsuario(Usuario pUsuario)
         {
-            string query = "INSERT INTO Usuario (DNI, Nombre, Apellido, Email, Contrasenia, Tipo, isHabilitado, Estado, Intentos, cambioContrasenia, ultimoLogin) VALUES (@DNI, @Nombre, @Apellido, @Email, @Contrasenia, @Tipo, @isHabilitado, @Estado, @Intentos, @cambioContrasenia, @ultimoLogin)";
+            string query = "INSERT INTO Usuario (DNI, Nombre, Apellido, Email, Contrasenia, Tipo, isHabilitado, Estado, Intentos, cambioContrasenia, ultimoLogin, Idioma) VALUES (@DNI, @Nombre, @Apellido, @Email, @Contrasenia, @Tipo, @isHabilitado, @Estado, @Intentos, @cambioContrasenia, @ultimoLogin, @Idioma)";
             using (SqlCommand CM = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
             {
                 CM.Parameters.AddWithValue("@DNI", pUsuario.DNI);
@@ -78,6 +78,7 @@ namespace DAL
                 CM.Parameters.AddWithValue("@Intentos", pUsuario.Intentos);
                 CM.Parameters.AddWithValue("@cambioContrasenia", pUsuario.cambioContrasenia);
                 CM.Parameters.AddWithValue("@ultimoLogin", pUsuario.ultimoLogin);
+                CM.Parameters.AddWithValue("@Idioma", pUsuario.Idioma);
                 GestorBD.Instancia.AbrirConexion();
                 CM.ExecuteNonQuery();
                 GestorBD.Instancia.CerrarConexion();
@@ -164,6 +165,17 @@ namespace DAL
             using (SqlCommand CM = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
             {
                 CM.Parameters.AddWithValue("@isHabilitado", pEstado);
+                GestorBD.Instancia.AbrirConexion();
+                CM.ExecuteNonQuery();
+                GestorBD.Instancia.CerrarConexion();
+            }
+        }
+        public void ActualizarIdiomaUsuario(string nuevoIdioma, Usuario pUsuario)
+        {
+            string query = $"UPDATE Usuario SET Idioma = @Idioma WHERE DNI = {pUsuario.DNI}";
+            using (SqlCommand CM = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+            {
+                CM.Parameters.AddWithValue("@Idioma", nuevoIdioma);
                 GestorBD.Instancia.AbrirConexion();
                 CM.ExecuteNonQuery();
                 GestorBD.Instancia.CerrarConexion();

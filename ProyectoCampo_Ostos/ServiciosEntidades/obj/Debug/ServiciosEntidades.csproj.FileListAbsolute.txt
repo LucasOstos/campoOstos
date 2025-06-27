@@ -10,3 +10,9 @@ D:\Proyecto\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.
 D:\Proyecto\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.csproj.CoreCompileInputs.cache
 D:\Proyecto\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.dll
 D:\Proyecto\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.pdb
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\bin\Debug\ServiciosEntidades.dll
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\bin\Debug\ServiciosEntidades.pdb
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.csproj.AssemblyReference.cache
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.csproj.CoreCompileInputs.cache
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.dll
+D:\Proyecto\campoOstos\ProyectoCampo_Ostos\ServiciosEntidades\obj\Debug\ServiciosEntidades.pdb

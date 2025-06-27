@@ -84,6 +84,7 @@ namespace DAL
                         U.Intentos = int.Parse(DR[8].ToString());
                         U.cambioContrasenia = Convert.ToBoolean(DR[9].ToString());
                         U.ultimoLogin = Convert.ToDateTime(DR[10].ToString());
+                        U.Idioma = DR[11].ToString();
                     }
                 }
             }

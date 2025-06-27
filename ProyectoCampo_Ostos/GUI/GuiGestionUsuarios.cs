@@ -23,11 +23,11 @@ namespace GUI
         private void GuiGestionUsuarios_Load(object sender, EventArgs e)
         {
             MostrarUsuarios();
+            ActualizarIdioma();
+            CargarRoles();
             AplicarCambios.Enabled = false;
             CancelarCambios.Enabled = false;
             DesbloquearUsuario.Enabled = false;
-            TraducirDGV();
-            CargarRoles();
         }
 
         #region Funciones
@@ -62,7 +62,7 @@ namespace GUI
             {
                 foreach (Usuario U in GestorUsuario.Instancia.ReturnBloqueados())
                 {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.cambioContrasenia, U.ultimoLogin);
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace GUI
             {
                 foreach(Usuario U in GestorUsuario.Instancia.ReturnUsuarios())
                 {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.cambioContrasenia, U.ultimoLogin);
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
                 }
             }
         }
@@ -123,6 +123,7 @@ namespace GUI
                                     pUsuario.Intentos = 0;
                                     pUsuario.cambioContrasenia = false;
                                     pUsuario.ultimoLogin = DateTime.Now;
+                                    pUsuario.Idioma = "Español";
                                     DialogResult Confirmacion = MessageBox.Show(Traducir("MsgConfirmarUsuario"), "", MessageBoxButtons.YesNo);
                                     if (Confirmacion == DialogResult.Yes)
                                     {
@@ -332,18 +333,14 @@ namespace GUI
             dgvUsuarios.Columns[3].HeaderText = Traductor.Instancia.Traducir("Usuario_Email");
             dgvUsuarios.Columns[4].HeaderText = Traductor.Instancia.Traducir("Usuario_Rol");            
             dgvUsuarios.Columns[5].HeaderText = Traductor.Instancia.Traducir("Usuario_Habilitado");
-            dgvUsuarios.Columns[6].HeaderText = Traductor.Instancia.Traducir("Usuario_Cambio");
-            dgvUsuarios.Columns[7].HeaderText = Traductor.Instancia.Traducir("Usuario_UltimoLogin");
+            dgvUsuarios.Columns[6].HeaderText = Traductor.Instancia.Traducir("Usuario_UltimoLogin");
+            dgvUsuarios.Columns[7].HeaderText = Traductor.Instancia.Traducir("Usuario_Idioma");
         }
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
-                if(c.GetType() != typeof(ComboBox))
+                if (c.GetType() != typeof(ComboBox))
                 {
                     if (c.GetType() != typeof(TextBox))
                     {
@@ -360,10 +357,11 @@ namespace GUI
                         }
                         c.Text = Traducir(c.Name);
                     }
-                }           
+                }
             }
-            TraducirDGV(); 
+            TraducirDGV();
         }
+        
         private string Traducir(string paraTraducir)
         {
             return Traductor.Instancia.Traducir(paraTraducir);
