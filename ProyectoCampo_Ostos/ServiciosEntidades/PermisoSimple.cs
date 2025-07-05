@@ -15,5 +15,10 @@ namespace ServiciosEntidades
         {
             return new List<Permiso>(); // No tiene hijos
         }
+
+        public override List<Permiso> ObtenerHijosRecursivo()
+        {
+            return null;
+        }
     }
 }

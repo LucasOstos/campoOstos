@@ -16,23 +16,22 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace GUI
 {
-    public partial class InterfazInicioSesion : Form //IObserver
+    public partial class InterfazInicioSesion : Form
     {
         public InterfazInicioSesion()
         {
             InitializeComponent();
-            //SuscribirFormulario();
         }
         private void InterfazInicioSesion_Load(object sender, EventArgs e)
         {
-            textBox1.Text = "lucas@gmail.com";
-            textBox2.Text = "vendedor1";
+            textBox1.Text = "lucas.ostos28@gmail.com";
+            textBox2.Text = "usuarioMemoria";
         }
         private void button1_Click(object sender, EventArgs e)
         {
             if(!Sesion.Instancia.IsLogueado())
             {
-                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administador General", true, true, 0, true, DateTime.Now, "Ingles");
+                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administador General", true, true, 0, true, DateTime.Now, "Español");
                 if (textBox1.Text == "lucas.ostos28@gmail.com" && textBox2.Text == "usuarioMemoria")
                 {
                     Sesion.Instancia.LogIn(usuarioMemoria);
@@ -112,48 +111,11 @@ namespace GUI
                 Application.Exit();
             }
         }
-        #region Idiomas
-        /*private void SuscribirFormulario()
-        {
-            Traductor.Instancia.Suscribir(this);
-        }
-        public void ActualizarIdioma()
-        {
-            foreach (Control c in Controls)
-            {
-                if (c.GetType() != typeof(TextBox))
-                {
-                    if (c.GetType() != typeof(Label))
-                    {
-                        if (c.GetType() == typeof(Button))
-                        {
-                            c.Text = Traducir(c.Name);
-                        }
-                        if (c.GetType() == typeof(MenuStrip))
-                        {
-                            foreach (ToolStripMenuItem item in (c as MenuStrip).Items)
-                            {
-                                foreach (ToolStripMenuItem subItem in item.DropDownItems)
-                                {
-                                    subItem.Text = Traducir(subItem.Name);
-                                }
-                                item.Text = Traducir(item.Name);
-                            }
-                        }
-                        c.Text = Traducir(c.Name);
-                    }
-                    c.Text = Traducir(c.Name);
-                }
-            }
-        }
         
-        private string Traducir(string paraTraducir)
-        {
-            return Traductor.Instancia.Traducir(paraTraducir);
-        }*/
+        #region Idiomas        
         private void EspanolMenuStrip_Click(object sender, EventArgs e)
         {
-            DialogResult Confirmacion = MessageBox.Show("", "", MessageBoxButtons.YesNo);
+            DialogResult Confirmacion = MessageBox.Show("Desea confirmar el cambio de idioma", "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Español");

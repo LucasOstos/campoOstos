@@ -25,6 +25,7 @@ namespace ServiciosEntidades
         }
         public virtual void Agregar(Permiso pPermiso) { }
         public virtual void Quitar(Permiso pPermiso) { }
+        public abstract List<Permiso> ObtenerHijosRecursivo();
         public abstract List<Permiso> ObtenerHijos();
 
     }

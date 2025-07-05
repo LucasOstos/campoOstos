@@ -108,6 +108,45 @@ namespace GUI
             tbNombrePerfil.Clear();
             listBoxPermisosPerfil.Items.Clear();
         }
+        private bool PermisoYaExisteEnLista(Permiso permisoNuevo)
+        {
+            foreach (object item in listBoxPermisosPerfil.Items)
+            {
+                if (item is Permiso existente)
+                {
+                    if (existente.Nombre == permisoNuevo.Nombre)
+                        return true;
+
+                    if (existente.EsCompuesto())
+                    {
+                        foreach (Permiso hijo in existente.ObtenerHijosRecursivo())
+                        {
+                            if (hijo.Nombre == permisoNuevo.Nombre)
+                                return true;
+                        }
+                    }
+
+                    if (permisoNuevo.EsCompuesto())
+                    {
+                        foreach (Permiso hijoNuevo in permisoNuevo.ObtenerHijosRecursivo())
+                        {
+                            if (existente.Nombre == hijoNuevo.Nombre)
+                                return true;
+
+                            if (existente.EsCompuesto())
+                            {
+                                foreach (Permiso hijoExistente in existente.ObtenerHijosRecursivo())
+                                {
+                                    if (hijoExistente.Nombre == hijoNuevo.Nombre)
+                                        return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         #endregion
 
         private void btnCrearPerfil_Click(object sender, EventArgs e)
@@ -119,12 +158,12 @@ namespace GUI
                 {
                     if(GestorPermiso.Instancia.Perfiles().Find(x => x.Nombre == nombrePerfil) == null)
                     {
-                        Permiso permiso = new PermisoCompuesto(0, nombrePerfil);
-                        foreach (Permiso p in listBoxPermisosPerfil.Items)
+                        Permiso perfilNuevo = new PermisoCompuesto(0, nombrePerfil);                        
+                        foreach(Permiso p in listBoxPermisosPerfil.Items)
                         {
-                            permiso.Agregar(p);
+                            perfilNuevo.Agregar(p);
                         }
-                        GestorPermiso.Instancia.CrearPerfil(permiso);
+                        GestorPermiso.Instancia.CrearPerfil(perfilNuevo);
                         LimpiarDatos();
                         MessageBox.Show("Perfil creado con éxito");
                         CargarPerfiles();
@@ -138,36 +177,46 @@ namespace GUI
         }
         private void btnAgregarPermisosPerfil_Click(object sender, EventArgs e)
         {
-            if(cbPerfiles.SelectedItem == null) //Creando un perfil
+            if(cbPerfiles.SelectedItem == null) //CREANDO UN PERFIL
             {
                 if (lbPermisosPerfil.SelectedItem != null)
                 {
-                    Permiso seleccionado = (Permiso)lbPermisosPerfil.SelectedItem;
-                    if (!listBoxPermisosPerfil.Items.Contains(seleccionado))
+                    string itemPermiso = lbPermisosPerfil.SelectedItem.ToString();
+                    bool esFamilia = itemPermiso.StartsWith("[Familia]");
+                    string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
+                    Permiso seleccionado = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
+                    if (!PermisoYaExisteEnLista(seleccionado))
                     {
-                        listBoxPermisosPerfil.Items.Add(seleccionado);
+                        if(seleccionado.EsCompuesto())
+                        {
+                            listBoxPermisosPerfil.Items.Add(seleccionado);
+                            foreach (Permiso p in seleccionado.ObtenerHijos())
+                            {
+                                listBoxPermisosPerfil.Items.Add(p);
+                            }
+                        }
+                        else { listBoxPermisosPerfil.Items.Add(seleccionado); }
                     }
                     else { MessageBox.Show("El permiso ya fue agregado."); }
                 }
                 else { MessageBox.Show("Debe seleccionar un permiso"); }
             }
-            else if(cbPerfiles.SelectedItem != null) //Modificando el perfil seleccionado
+            else if(cbPerfiles.SelectedItem != null) //MODIFICANDO UN PERFIL
             {
                 string nombrePerfil = cbPerfiles.Text;
                 Permiso perfil = GestorPermiso.Instancia.Perfiles().Find(p => p.Nombre == nombrePerfil);
-                Permiso permiso = (Permiso)lbPermisosPerfil.SelectedItem;
-                if (perfil.ObtenerHijos().Any(p => p.Nombre == permiso.Nombre))
-                {
-                    MessageBox.Show("Este permiso ya está asignado al perfil.");
-                }
-                else
+                string itemPermiso = lbPermisosPerfil.SelectedItem.ToString();
+                bool esFamilia = itemPermiso.StartsWith("[Familia]");
+                string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
+                Permiso permiso = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
+                if (!GestorPermiso.Instancia.PermisoExistente(perfil.Codigo, permiso))
                 {
                     perfil.Agregar(permiso);
                     GestorPermiso.Instancia.AgregarPermisosPerfil(perfil.Codigo, permiso);
                     MostrarPermisosPerfil();
                 }
-            }
-            
+                else { MessageBox.Show("El permiso o familia ya está asignada al perfil o a una familia incluida en el perfil."); }
+            }            
         }
         private void btnQuitarPermisosPerfil_Click(object sender, EventArgs e)
         {

@@ -22,17 +22,11 @@ namespace BLL
                 return instancia;
             }
         }
+
+        #region Perifles
         public List<Permiso> Perfiles()
         {
             return PermisosBD.Instancia.ObtenerPerfilesRelaciones();
-        }
-        public List<Permiso> Familias()
-        {
-            return PermisosBD.Instancia.ObtenerFamiliasRelaciones();
-        }
-        public List<Permiso> Permisos()
-        {
-            return PermisosBD.Instancia.ObtenerPermisos();
         }
         public void CrearPerfil(Permiso permiso)
         {
@@ -51,26 +45,21 @@ namespace BLL
         {
             PermisosBD.Instancia.EliminarPerfil(pPermiso);
         }
-        //public List<Permiso> CargarPermisosUsuario(int dni)
-        //{
-        //    return PermisosBD.Instancia.ObtenerPermisosPorUsuario(dni);
-        //}
-        //public bool UsuarioTienePermiso(Usuario u, string permisoBuscado)
-        //{
-        //    return u.Permisos.Any(p => TienePermiso(p, permisoBuscado));
-        //}
-        //private bool TienePermiso(Permiso PC, string NombrePermiso)
-        //{
-        //    if (PC == null) return false;
-        //    if (PC.Nombre == NombrePermiso)
-        //        return true;
 
-        //    foreach (var hijo in PC.ObtenerHijos())
-        //    {
-        //        if (TienePermiso(hijo, NombrePermiso))
-        //            return true;
-        //    }
-        //    return false;
-        //}
+        public bool PermisoExistente(int codPerfil, Permiso codPermiso)
+        {
+            return PermisosBD.Instancia.PermisoYaExisteEnPerfil(codPerfil, codPermiso);
+        }
+        #endregion
+
+        public List<Permiso> Familias()
+        {
+            return PermisosBD.Instancia.ObtenerFamiliasRelaciones();
+        }
+        public List<Permiso> Permisos()
+        {
+            return PermisosBD.Instancia.ObtenerPermisos();
+        }
+        
     }
 }

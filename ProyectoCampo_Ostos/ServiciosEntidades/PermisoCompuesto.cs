@@ -31,5 +31,17 @@ namespace ServiciosEntidades
         {
             return permisos;
         }
+
+        public override List<Permiso> ObtenerHijosRecursivo()
+        {
+            List<Permiso> hijos = new List<Permiso>();
+            foreach (Permiso p in this.ObtenerHijos())
+            {
+                hijos.Add(p);
+                if (p is PermisoCompuesto compuesto)
+                    hijos.AddRange(compuesto.ObtenerHijosRecursivo());
+            }
+            return hijos;
+        }
     }
 }

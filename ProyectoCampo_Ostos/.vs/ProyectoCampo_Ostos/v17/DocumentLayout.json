@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{30BF4AB9-285B-4885-B39E-972D26732BA3}|SERVICIOS\\SERVICIOS.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\servicios\\encriptado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{30BF4AB9-285B-4885-B39E-972D26732BA3}|SERVICIOS\\SERVICIOS.csproj|solutionrelative:servicios\\encriptado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guiasignarcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guiasignarcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\serviciosentidades\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|solutionrelative:serviciosentidades\\permiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\serviciosentidades\\permisocompuesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|solutionrelative:serviciosentidades\\permisocompuesto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\serviciosentidades\\permisosimple.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D85E80D6-68B0-4447-A66B-895D0BA927E4}|ServiciosEntidades\\ServiciosEntidades.csproj|solutionrelative:serviciosentidades\\permisosimple.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\bll\\gestorpermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|solutionrelative:bll\\gestorpermiso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\dal\\permisosbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|solutionrelative:dal\\permisosbd.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\guipantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\gestorformulario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\gestorformulario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\interfaziniciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\interfaziniciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\guifactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guifactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\interfaziniciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\interfaziniciosesion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\gui\\guipantallaprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -42,103 +46,122 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Encriptado.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\SERVICIOS\\Encriptado.cs",
-              "RelativeDocumentMoniker": "SERVICIOS\\Encriptado.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\SERVICIOS\\Encriptado.cs",
-              "RelativeToolTip": "SERVICIOS\\Encriptado.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "PermisoSimple.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\PermisoSimple.cs",
+              "RelativeDocumentMoniker": "ServiciosEntidades\\PermisoSimple.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\PermisoSimple.cs",
+              "RelativeToolTip": "ServiciosEntidades\\PermisoSimple.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T19:10:15.998Z",
+              "WhenOpened": "2025-07-05T01:53:06.159Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GuiFactura.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiFactura.cs",
-              "RelativeDocumentMoniker": "GUI\\GuiFactura.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiFactura.cs",
-              "RelativeToolTip": "GUI\\GuiFactura.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAjwBoAAABLAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Permiso.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\Permiso.cs",
+              "RelativeDocumentMoniker": "ServiciosEntidades\\Permiso.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\Permiso.cs",
+              "RelativeToolTip": "ServiciosEntidades\\Permiso.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T13:55:14.41Z"
+              "WhenOpened": "2025-07-05T01:16:10.358Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GuiAsignarCarrito.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiAsignarCarrito.cs",
-              "RelativeDocumentMoniker": "GUI\\GuiAsignarCarrito.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiAsignarCarrito.cs",
-              "RelativeToolTip": "GUI\\GuiAsignarCarrito.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "PermisoCompuesto.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\PermisoCompuesto.cs",
+              "RelativeDocumentMoniker": "ServiciosEntidades\\PermisoCompuesto.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\ServiciosEntidades\\PermisoCompuesto.cs",
+              "RelativeToolTip": "ServiciosEntidades\\PermisoCompuesto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wCIAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T13:55:06.52Z",
+              "WhenOpened": "2025-07-04T20:03:51.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GuiPermisos.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAtwJQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T19:45:44.466Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "InterfazInicioSesion.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\InterfazInicioSesion.cs",
-              "RelativeDocumentMoniker": "GUI\\InterfazInicioSesion.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\InterfazInicioSesion.cs",
-              "RelativeToolTip": "GUI\\InterfazInicioSesion.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBwAAAAmAAAAAAAAAA==",
+              "Title": "GuiPermisos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T13:48:43.737Z"
+              "WhenOpened": "2025-07-04T19:45:43.245Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GestorPermiso.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BLL\\GestorPermiso.cs",
+              "RelativeDocumentMoniker": "BLL\\GestorPermiso.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BLL\\GestorPermiso.cs",
+              "RelativeToolTip": "BLL\\GestorPermiso.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAnwD0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-04T19:44:18.749Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "InterfazInicioSesion.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\InterfazInicioSesion.cs",
-              "RelativeDocumentMoniker": "GUI\\InterfazInicioSesion.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\InterfazInicioSesion.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GUI\\InterfazInicioSesion.cs [Dise\u00F1o]",
+              "Title": "PermisosBD.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\DAL\\PermisosBD.cs",
+              "RelativeDocumentMoniker": "DAL\\PermisosBD.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\DAL\\PermisosBD.cs",
+              "RelativeToolTip": "DAL\\PermisosBD.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAEwCUAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T13:48:42.781Z"
+              "WhenOpened": "2025-07-04T19:42:31.876Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GestorFormulario.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GestorFormulario.cs",
-              "RelativeDocumentMoniker": "GUI\\GestorFormulario.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GestorFormulario.cs",
-              "RelativeToolTip": "GUI\\GestorFormulario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-27T13:42:02.993Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "GuiPantallaPrincipal.cs",
               "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPantallaPrincipal.cs",
               "RelativeDocumentMoniker": "GUI\\GuiPantallaPrincipal.cs",
               "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPantallaPrincipal.cs",
               "RelativeToolTip": "GUI\\GuiPantallaPrincipal.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAArwHYAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAiwNwAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T21:29:29.031Z"
+              "WhenOpened": "2025-06-26T21:29:29.031Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "GuiPantallaPrincipal.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPantallaPrincipal.cs",
               "RelativeDocumentMoniker": "GUI\\GuiPantallaPrincipal.cs",
               "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPantallaPrincipal.cs [Dise\u00F1o]",
               "RelativeToolTip": "GUI\\GuiPantallaPrincipal.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-26T21:29:27.675Z"
+              "WhenOpened": "2025-06-26T21:29:27.675Z",
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

@@ -140,15 +140,10 @@ namespace GUI
         #region Idiomas
         public void ActualizarIdioma()
         {
-            TraducirFormulario();
-            TraducirLabels();
-        }
-        private void TraducirFormulario()
-        {
             foreach (Control c in Controls)
             {
                 if (c.GetType() != typeof(Label))
-                {                                      
+                {
                     if (c.GetType() == typeof(MenuStrip))
                     {
                         foreach (ToolStripMenuItem item in (c as MenuStrip).Items)
@@ -163,7 +158,8 @@ namespace GUI
                     c.Text = Traducir(c.Name);
                 }
             }
-        }
+            TraducirLabels();
+        }        
         private void TraducirLabels()
         {
             string T1 = Traducir("labelUsuario");
@@ -181,6 +177,7 @@ namespace GUI
             if(Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Español");
+                Sesion.Instancia.Usuario.Idioma = "Español";
                 MessageBox.Show("Idioma cambiado correctamente");
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
@@ -191,6 +188,7 @@ namespace GUI
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Ingles");
+                Sesion.Instancia.Usuario.Idioma = "Ingles";
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -200,6 +198,7 @@ namespace GUI
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Francés");
+                Sesion.Instancia.Usuario.Idioma = "Francés";
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -209,6 +208,7 @@ namespace GUI
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Alemán");
+                Sesion.Instancia.Usuario.Idioma = "Alemán";
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -218,6 +218,7 @@ namespace GUI
             if (Confirmacion == DialogResult.Yes)
             {
                 Traductor.Instancia.Notificar("Portugués");
+                Sesion.Instancia.Usuario.Idioma = "Portugués";
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
