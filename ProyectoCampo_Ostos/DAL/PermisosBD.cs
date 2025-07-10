@@ -43,6 +43,8 @@ namespace DAL
             }
             return permisos;
         }
+
+        #region Perfiles
         public bool PermisoYaExisteEnPerfil(int codPerfil, Permiso permiso)
         {
             if(permiso is PermisoSimple)
@@ -165,9 +167,7 @@ namespace DAL
             }
 
             return codigos.Distinct().ToList();
-        }
-
-        // Obtener todos los permisos simples que contiene la familia (recursivo si es necesario)
+        }        
         private List<int> ObtenerCodigosPermisosSimplesDeFamilia(int codFamilia)
         {
             List<int> codigos = new List<int>();
@@ -188,6 +188,7 @@ namespace DAL
             }
 
             // Subfamilias (recursivo)
+            List<int> subFamiliasIds = new List<int>();
             string querySubfamilias = @"SELECT Cod_FamiliaIncluida FROM FamiliaFamilia WHERE Cod_FamiliaPrincipal = @CodFamilia";
 
             using (SqlCommand cmd = new SqlCommand(querySubfamilias, GestorBD.Instancia.ReturnConexion()))
@@ -199,12 +200,15 @@ namespace DAL
                     while (reader.Read())
                     {
                         int subId = reader.GetInt32(0);
-                        codigos.AddRange(ObtenerCodigosPermisosSimplesDeFamilia(subId));
+                        subFamiliasIds.Add(reader.GetInt32(0));
                     }
                 }
                 GestorBD.Instancia.CerrarConexion();
             }
-
+            foreach (int subId in subFamiliasIds)
+            {
+                codigos.AddRange(ObtenerCodigosPermisosSimplesDeFamilia(subId));
+            }
             return codigos.Distinct().ToList();
         }
         public void AgregarPermisoAPerfil(int codPerfil, Permiso pPermiso)
@@ -412,6 +416,249 @@ namespace DAL
             }
             return numero;
         }
+        #endregion
+
+
+        #region Familias
+        public bool PermisoYaExisteEnFamilia(int codFamilia, Permiso permiso)
+        {
+            if (permiso is PermisoSimple)
+            {
+                // Verifica si el permiso está directamente en el perfil
+                string queryDirecto = @"SELECT COUNT(*) FROM PermisoFamilia WHERE Cod_Familia = @Cod_Familia AND Cod_Permiso = @Cod_Permiso";
+
+                using (SqlCommand cmd = new SqlCommand(queryDirecto, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Cod_Familia", codFamilia);
+                    cmd.Parameters.AddWithValue("@Cod_Permiso", permiso.Codigo);
+
+                    GestorBD.Instancia.AbrirConexion();
+                    int countDirecto = (int)cmd.ExecuteScalar();
+                    GestorBD.Instancia.CerrarConexion();
+
+                    if (countDirecto > 0)
+                        return true;
+                }
+
+                // Verifica si el permiso está indirectamente en alguna subfamilia
+                List<int> permisosSubfamilias = ObtenerCodigosPermisosSimplesDeFamilia(codFamilia);
+                return permisosSubfamilias.Contains(permiso.Codigo);
+                //string queryIndirecto = @"SELECT COUNT(*) FROM FamiliaPerfil FP INNER JOIN PermisoFamilia PerFam ON FP.Cod_Familia = PerFam.Cod_Familia WHERE FP.Cod_Perfil = @CodPerfil AND PerFam.Cod_Permiso = @CodPermiso";
+
+                //using (SqlCommand cmd = new SqlCommand(queryIndirecto, GestorBD.Instancia.ReturnConexion()))
+                //{
+                //    cmd.Parameters.AddWithValue("@CodPerfil", codPerfil);
+                //    cmd.Parameters.AddWithValue("@CodPermiso", permiso.Codigo);
+
+                //    GestorBD.Instancia.AbrirConexion();
+                //    int countIndirecto = (int)cmd.ExecuteScalar();
+                //    GestorBD.Instancia.CerrarConexion();
+
+                //    return countIndirecto > 0;
+                //}
+            }
+
+            if (permiso is PermisoCompuesto)
+            {
+                // Verifica si la familia está directamente incluida
+                string queryDirecto = @"SELECT COUNT(*) FROM FamiliaFamilia WHERE Cod_FamiliaPrincipal = @Cod_FamiliaPrincipal AND Cod_FamiliaIncluida = @Cod_FamiliaIncluida";
+
+                using (SqlCommand cmd = new SqlCommand(queryDirecto, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaPrincipal", codFamilia);
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaIncluida", permiso.Codigo);
+
+                    GestorBD.Instancia.AbrirConexion();
+                    int countDirecto = (int)cmd.ExecuteScalar();
+                    GestorBD.Instancia.CerrarConexion();
+
+                    if (countDirecto > 0)
+                        return true;
+                }
+
+                // Verifica si la familia está indirectamente incluida
+                List<int> subfamilias = ObtenerCodigosSubfamiliasDeFamilia(codFamilia);
+                if (subfamilias.Contains(permiso.Codigo))
+                    return true;
+                //string queryIndirecto = @"SELECT COUNT(*) FROM FamiliaPerfil FP INNER JOIN FamiliaFamilia FamFam ON FP.Cod_Familia = FamFam.Cod_FamiliaPrincipal WHERE FP.Cod_Perfil = @CodPerfil AND FamFam.Cod_FamiliaIncluida = @Cod_FamiliaIncluida";
+
+                //using (SqlCommand cmd = new SqlCommand(queryIndirecto, GestorBD.Instancia.ReturnConexion()))
+                //{
+                //    cmd.Parameters.AddWithValue("@CodPerfil", codPerfil);
+                //    cmd.Parameters.AddWithValue("@Cod_FamiliaIncluida", permiso.Codigo);
+
+                //    GestorBD.Instancia.AbrirConexion();
+                //    int countIndirecto = (int)cmd.ExecuteScalar();
+                //    GestorBD.Instancia.CerrarConexion();
+
+                //    if (countIndirecto > 0)
+                //        return true;
+                //}
+
+                // Obtener todos los permisos simples que contiene esta familia recursivamente
+                List<int> permisosActuales = ObtenerCodigosPermisosSimplesDeFamilia(codFamilia);
+                List<int> permisosDeLaFamilia = ObtenerCodigosPermisosSimplesDeFamilia(permiso.Codigo);
+
+                // Verificar si hay algún permiso repetido
+                foreach (int cod in permisosDeLaFamilia)
+                {
+                    if (permisosActuales.Contains(cod))
+                        return true; // ya existe uno de los permisos de esta familia
+                }
+            }
+            return false;
+        }
+        private List<int> ObtenerCodigosSubfamiliasDeFamilia(int codFamilia)
+        {
+            List<int> codigos = new List<int>();
+
+            string query = @"SELECT Cod_FamiliaIncluida FROM FamiliaFamilia WHERE Cod_FamiliaPrincipal = @CodFamilia";
+            using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+            {
+                cmd.Parameters.AddWithValue("@CodFamilia", codFamilia);
+                GestorBD.Instancia.AbrirConexion();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int subId = reader.GetInt32(0);
+                        codigos.Add(subId);
+                        codigos.AddRange(ObtenerCodigosSubfamiliasDeFamilia(subId));
+                    }
+                }
+                GestorBD.Instancia.CerrarConexion();
+            }
+
+            return codigos.Distinct().ToList();
+        }
+
+        public void CrearFamilia(Permiso permiso)
+        {
+            string query = "INSERT INTO Familia (Cod_Familia, Nombre_Familia) VALUES (@Cod_Familia, @Nombre_Familia)";
+            using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+            {
+                cmd.Parameters.AddWithValue("@Cod_Familia", permiso.Codigo);
+                cmd.Parameters.AddWithValue("@Nombre_Familia", permiso.Nombre);
+                GestorBD.Instancia.AbrirConexion();
+                cmd.ExecuteNonQuery();
+                GestorBD.Instancia.CerrarConexion();
+            }
+
+            foreach (Permiso p in permiso.ObtenerHijos())
+            {
+                if (p is PermisoSimple)
+                {
+                    string insertPermiso = "INSERT INTO PermisoFamilia (Cod_Familia, Cod_Permiso) VALUES (@Cod_Familia, @Cod_Permiso)";
+                    using (SqlCommand cmd = new SqlCommand(insertPermiso, GestorBD.Instancia.ReturnConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@Cod_Familia", permiso.Codigo);
+                        cmd.Parameters.AddWithValue("@Cod_Permiso", p.Codigo);
+                        GestorBD.Instancia.AbrirConexion();
+                        cmd.ExecuteNonQuery();
+                        GestorBD.Instancia.CerrarConexion();
+                    }
+                }
+                else if (p is PermisoCompuesto)
+                {
+                    string insertFamilia = "INSERT INTO FamiliaFamilia (Cod_FamiliaPrincipal, Cod_FamiliaIncluida) VALUES (@Cod_FamiliaPrincipal, @Cod_FamiliaIncluida)";
+                    using (SqlCommand cmd = new SqlCommand(insertFamilia, GestorBD.Instancia.ReturnConexion()))
+                    {
+                        cmd.Parameters.AddWithValue("@Cod_FamiliaPrincipal", permiso.Codigo);
+                        cmd.Parameters.AddWithValue("@Cod_FamiliaIncluida", p.Codigo);
+                        GestorBD.Instancia.AbrirConexion();
+                        cmd.ExecuteNonQuery();
+                        GestorBD.Instancia.CerrarConexion();
+                    }
+                }
+            }
+        }
+        public void AgregarPermisoAFamilia(int codFamilia, Permiso pPermiso)
+        {
+            string query;
+            if (pPermiso is PermisoSimple)
+            {
+                query = "INSERT INTO PermisoFamilia (Cod_Familia, Cod_Permiso) VALUES (@Cod_Familia, @Cod_Permiso)";
+                using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Cod_Familia", codFamilia);
+                    cmd.Parameters.AddWithValue("@Cod_Permiso", pPermiso.Codigo);
+                    GestorBD.Instancia.AbrirConexion();
+                    cmd.ExecuteNonQuery();
+                    GestorBD.Instancia.CerrarConexion();
+                }
+            }
+            else if (pPermiso is PermisoCompuesto)
+            {
+                query = "INSERT INTO FamiliaFamilia (Cod_FamiliaPrincipal, Cod_FamiliaIncluida) VALUES (@Cod_FamiliaPrincipal, @Cod_FamiliaIncluida)";
+                using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaPrincipal", codFamilia);
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaIncluida", pPermiso.Codigo);
+                    GestorBD.Instancia.AbrirConexion();
+                    cmd.ExecuteNonQuery();
+                    GestorBD.Instancia.CerrarConexion();
+                }
+            }
+        }
+        public void QuitarPermisoAFamilia(int codFamilia, Permiso pPermiso)
+        {
+            string query;
+            if (pPermiso is PermisoSimple)
+            {
+                query = "DELETE FROM PermisoFamilia WHERE Cod_Familia = @CodFamilia AND Cod_Permiso = @CodPermiso";
+                using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@CodFamilia", codFamilia);
+                    cmd.Parameters.AddWithValue("@CodPermiso", pPermiso.Codigo);
+                    GestorBD.Instancia.AbrirConexion();
+                    cmd.ExecuteNonQuery();
+                    GestorBD.Instancia.CerrarConexion();
+                }
+            }
+            else if (pPermiso is PermisoCompuesto)
+            {
+                query = "DELETE FROM FamiliaFamilia WHERE Cod_FamiliaPrincipal = @Cod_FamiliaPrincipal AND Cod_FamiliaIncluida = @Cod_FamiliaIncluida";
+                using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+                {
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaPrincipal", codFamilia);
+                    cmd.Parameters.AddWithValue("@Cod_FamiliaIncluida", pPermiso.Codigo);
+                    GestorBD.Instancia.AbrirConexion();
+                    cmd.ExecuteNonQuery();
+                    GestorBD.Instancia.CerrarConexion();
+                }
+                foreach (Permiso p in pPermiso.ObtenerHijos())
+                {
+                    QuitarPermisoAFamilia(pPermiso.Codigo, p);
+                }
+            }
+        }
+        public void EliminarFamilia(Permiso pPermiso)
+        {
+            string borrarRelacionPermisosFamilia = "DELETE FROM PermisoFamilia WHERE Cod_Familia = @Cod_Familia";
+            string borrarRelacionFamiliaFamilia = "DELETE FROM FamiliaFamilia WHERE Cod_FamiliaPrincipal = @Cod_FamiliaPrincipal";
+            string borrarFamilia = "DELETE FROM Familia WHERE Cod_Familia = @Cod_Familia";
+
+            GestorBD.Instancia.AbrirConexion();
+            SqlTransaction transaccion = GestorBD.Instancia.ReturnConexion().BeginTransaction();
+            using (SqlCommand CM = new SqlCommand(borrarRelacionPermisosFamilia, GestorBD.Instancia.ReturnConexion(), transaccion))
+            {
+                CM.Parameters.AddWithValue("@Cod_Familia", pPermiso.Codigo);
+                CM.ExecuteNonQuery();
+            }
+            using (SqlCommand cmd = new SqlCommand(borrarRelacionFamiliaFamilia, GestorBD.Instancia.ReturnConexion(), transaccion))
+            {
+                cmd.Parameters.AddWithValue("@Cod_FamiliaPrincipal", pPermiso.Codigo);
+                cmd.ExecuteNonQuery();
+            }
+
+            using (SqlCommand cmd = new SqlCommand(borrarFamilia, GestorBD.Instancia.ReturnConexion(), transaccion))
+            {
+                cmd.Parameters.AddWithValue("@Cod_Familia", pPermiso.Codigo);
+                cmd.ExecuteNonQuery();
+            }
+            transaccion.Commit();
+            GestorBD.Instancia.CerrarConexion();
+        }
         public List<Permiso> ObtenerFamiliasRelaciones()
         {
             List<Permiso> familias = new List<Permiso>();
@@ -478,7 +725,18 @@ namespace DAL
             }
             return hijos;
         }
-
-        
+        public int ObtenerCodigoFamilia()
+        {
+            int numero = 1;
+            string query = "SELECT ISNULL(MAX(Cod_Familia), 0) + 1 FROM Familia";
+            using (SqlCommand cmd = new SqlCommand(query, GestorBD.Instancia.ReturnConexion()))
+            {
+                GestorBD.Instancia.AbrirConexion();
+                numero = (int)cmd.ExecuteScalar();
+                GestorBD.Instancia.CerrarConexion();
+            }
+            return numero;
+        }        
+        #endregion
     }
 }

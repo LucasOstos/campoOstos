@@ -25,7 +25,7 @@ namespace DAL
         }
         public void AbrirConexion()
         {
-            CO.ConnectionString = "Data Source=.;Initial Catalog=BaseProyecto;Integrated Security=True;MultipleActiveResultSets=True;";
+            //CO.ConnectionString = "Data Source=.;Initial Catalog=BaseProyecto;Integrated Security=True;MultipleActiveResultSets=True;";
             CO.Open();
         }
         public void CerrarConexion()
@@ -78,7 +78,7 @@ namespace DAL
                         U.Apellido = DR[2].ToString();
                         U.Email = DR[3].ToString();
                         U.Contraseña = DR[4].ToString();
-                        U.Tipo = DR[5].ToString();
+                        U.Perfil = DR[5].ToString();
                         U.IsHabilitado = Convert.ToBoolean(DR[6].ToString());
                         U.Estado = Convert.ToBoolean(DR[7].ToString());
                         U.Intentos = int.Parse(DR[8].ToString());

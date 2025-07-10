@@ -52,7 +52,7 @@ namespace GUI
                                     pUsuario.Nombre = textBox3.Text;
                                     pUsuario.Email = textBox4.Text;
                                     pUsuario.Contraseña = Encriptado.InstanceEncriptado.EncriptarContraseña($"{pUsuario.DNI}{pUsuario.Apellido}");
-                                    pUsuario.Tipo = cbRoles.Text;
+                                    pUsuario.Perfil = cbRoles.Text;
                                     pUsuario.IsHabilitado = true;
                                     pUsuario.Estado = false;
                                     pUsuario.Intentos = 0;
@@ -73,22 +73,22 @@ namespace GUI
                                         MostrarUsuarios();
                                     }
                                 }
-                                else { MessageBox.Show("Debe elegir un rol"); }
+                                else { MessageBox.Show(Traducir("MsgPerfilNoElegido")); }
                             }
                             else { MessageBox.Show(Traducir("MsgFormatoEmail")); }
                         }
-                        else { MessageBox.Show("El apellido no puede estar vacio"); }
+                        else { MessageBox.Show(Traducir("MsgApellidoVacio")); }
                     }
-                    else { MessageBox.Show("El nombre no puede estar vacio"); }
+                    else { MessageBox.Show(Traducir("MsgNombreVacio")); }
                 }
                 else
                 {
-                    MessageBox.Show("El usuario ya existe");
+                    MessageBox.Show(Traducir("MsgUsuarioExistente"));
                 }
             }
             else
             {
-                MessageBox.Show("El DNI no puede estar vacío");
+                MessageBox.Show(Traducir("MsgDNIVacio"));
             }
             
         }
@@ -122,7 +122,7 @@ namespace GUI
                 GestorUsuario.Instancia.CambiarEstado(pEmail);
                 MostrarUsuarios();
             }
-            else { MessageBox.Show("Debe seleccionar un usuario"); }
+            else { MessageBox.Show(Traducir("MsgUsuarioNulo")); }
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -136,7 +136,7 @@ namespace GUI
             {
                 if (dgvUsuarios.SelectedRows.Count == 0)
                 {
-                    MessageBox.Show("Debe seleccionar un usuario");
+                    MessageBox.Show(Traducir("MsgUsuarioNulo"));
                 }
                 else
                 {
@@ -166,7 +166,7 @@ namespace GUI
                     Usuario.Apellido = textBox2.Text;
                     Usuario.Nombre = textBox3.Text;
                     Usuario.Email = textBox4.Text;
-                    Usuario.Tipo = cbRoles.Text;
+                    Usuario.Perfil = cbRoles.Text;
                     GestorUsuario.Instancia.ModificarUsuario((int)dgvUsuarios.SelectedRows[0].Cells[0].Value, Usuario);
                     MostrarUsuarios();
                     MessageBox.Show(Traducir("MsgUsuarioModificado"));
@@ -238,7 +238,7 @@ namespace GUI
             {
                 foreach (Usuario U in GestorUsuario.Instancia.ReturnBloqueados())
                 {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Perfil, U.IsHabilitado, U.ultimoLogin, U.Idioma);
                 }
             }
         }
@@ -249,7 +249,7 @@ namespace GUI
             {
                 foreach(Usuario U in GestorUsuario.Instancia.ReturnUsuarios())
                 {
-                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Tipo, U.IsHabilitado, U.ultimoLogin, U.Idioma);
+                    dgvUsuarios.Rows.Add(U.DNI, U.Apellido, U.Nombre, U.Email, U.Perfil, U.IsHabilitado, U.ultimoLogin, U.Idioma);
                 }
             }
         }

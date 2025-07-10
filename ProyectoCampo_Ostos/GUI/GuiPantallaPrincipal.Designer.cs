@@ -82,6 +82,7 @@
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(6, 2, 0, 5);
             this.menuStrip2.Size = new System.Drawing.Size(631, 26);
             this.menuStrip2.TabIndex = 19;
+            this.menuStrip2.Tag = "barraPrincipal";
             this.menuStrip2.Text = "menuStrip2";
             // 
             // idiomaMenu
@@ -95,6 +96,7 @@
             this.StripMenuPortugues});
             this.idiomaMenu.Name = "idiomaMenu";
             this.idiomaMenu.Size = new System.Drawing.Size(108, 19);
+            this.idiomaMenu.Tag = "Cambio idioma";
             this.idiomaMenu.Text = "Cambiar Idioma";
             // 
             // StripMenuEspaniol
@@ -129,6 +131,7 @@
             // 
             this.StripMenuPortugues.Name = "StripMenuPortugues";
             this.StripMenuPortugues.Size = new System.Drawing.Size(180, 22);
+            this.StripMenuPortugues.Tag = "";
             this.StripMenuPortugues.Text = "Portugues";
             this.StripMenuPortugues.Click += new System.EventHandler(this.portuguesToolStripMenuItem_Click);
             // 
@@ -146,6 +149,7 @@
             // 
             this.loginItem.Name = "loginItem";
             this.loginItem.Size = new System.Drawing.Size(191, 22);
+            this.loginItem.Tag = "Login";
             this.loginItem.Text = "Iniciar Sesión";
             this.loginItem.Click += new System.EventHandler(this.loginItem_Click);
             // 
@@ -153,6 +157,7 @@
             // 
             this.logoutItem.Name = "logoutItem";
             this.logoutItem.Size = new System.Drawing.Size(191, 22);
+            this.logoutItem.Tag = "Logout";
             this.logoutItem.Text = "Cerrar Sesión";
             this.logoutItem.Click += new System.EventHandler(this.logoutItem_Click);
             // 
@@ -160,6 +165,7 @@
             // 
             this.ContraseñaItem.Name = "ContraseñaItem";
             this.ContraseñaItem.Size = new System.Drawing.Size(191, 22);
+            this.ContraseñaItem.Tag = "Cambio contraseña";
             this.ContraseñaItem.Text = "Cambiar Contraseña";
             this.ContraseñaItem.Click += new System.EventHandler(this.ContraseñaItem_Click);
             // 
@@ -170,12 +176,14 @@
             this.usuariosItem});
             this.adminMenu.Name = "adminMenu";
             this.adminMenu.Size = new System.Drawing.Size(105, 19);
+            this.adminMenu.Tag = "Administrador";
             this.adminMenu.Text = "Administración";
             // 
             // perfilesItem
             // 
             this.perfilesItem.Name = "perfilesItem";
             this.perfilesItem.Size = new System.Drawing.Size(188, 22);
+            this.perfilesItem.Tag = "Gestión perfiles";
             this.perfilesItem.Text = "Gestión de Perfiles";
             this.perfilesItem.Click += new System.EventHandler(this.perfilesItem_Click);
             // 
@@ -183,6 +191,7 @@
             // 
             this.usuariosItem.Name = "usuariosItem";
             this.usuariosItem.Size = new System.Drawing.Size(188, 22);
+            this.usuariosItem.Tag = "Gestión usuarios";
             this.usuariosItem.Text = "Gestión de Usuarios";
             this.usuariosItem.Click += new System.EventHandler(this.usuariosItem_Click);
             // 
@@ -194,12 +203,14 @@
             this.clientesItem});
             this.vendedorMenu.Name = "vendedorMenu";
             this.vendedorMenu.Size = new System.Drawing.Size(73, 19);
+            this.vendedorMenu.Tag = "Vendedor";
             this.vendedorMenu.Text = "Vendedor";
             // 
             // productosItem
             // 
             this.productosItem.Name = "productosItem";
             this.productosItem.Size = new System.Drawing.Size(182, 22);
+            this.productosItem.Tag = "Agregar producto";
             this.productosItem.Text = "Agregar Productos";
             this.productosItem.Click += new System.EventHandler(this.productosItem_Click);
             // 
@@ -207,6 +218,7 @@
             // 
             this.carritoItem.Name = "carritoItem";
             this.carritoItem.Size = new System.Drawing.Size(182, 22);
+            this.carritoItem.Tag = "Asignar carrito";
             this.carritoItem.Text = "Asignar Carrito";
             this.carritoItem.Click += new System.EventHandler(this.carritoItem_Click);
             // 
@@ -214,6 +226,7 @@
             // 
             this.clientesItem.Name = "clientesItem";
             this.clientesItem.Size = new System.Drawing.Size(182, 22);
+            this.clientesItem.Tag = "Registrar cliente";
             this.clientesItem.Text = "Registrar Cliente";
             this.clientesItem.Click += new System.EventHandler(this.clientesItem_Click);
             // 
@@ -223,12 +236,14 @@
             this.facturaItem});
             this.cajeroMenu.Name = "cajeroMenu";
             this.cajeroMenu.Size = new System.Drawing.Size(56, 19);
+            this.cajeroMenu.Tag = "Cajero";
             this.cajeroMenu.Text = "Cajero";
             // 
             // facturaItem
             // 
             this.facturaItem.Name = "facturaItem";
             this.facturaItem.Size = new System.Drawing.Size(180, 22);
+            this.facturaItem.Tag = "Generar factura";
             this.facturaItem.Text = "Generar Factura";
             this.facturaItem.Click += new System.EventHandler(this.facturaItem_Click);
             // 
@@ -236,10 +251,10 @@
             // 
             this.lbBienvenida.AutoSize = true;
             this.lbBienvenida.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lbBienvenida.Font = new System.Drawing.Font("Elephant", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBienvenida.Font = new System.Drawing.Font("Elephant", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBienvenida.Location = new System.Drawing.Point(12, 298);
             this.lbBienvenida.Name = "lbBienvenida";
-            this.lbBienvenida.Size = new System.Drawing.Size(594, 31);
+            this.lbBienvenida.Size = new System.Drawing.Size(518, 27);
             this.lbBienvenida.TabIndex = 20;
             this.lbBienvenida.Text = "BIENVENIDO A BELLEZA ARGENTINA";
             // 

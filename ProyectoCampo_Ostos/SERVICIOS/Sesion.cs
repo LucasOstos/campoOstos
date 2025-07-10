@@ -30,7 +30,19 @@ namespace SERVICIOS
             Usuario.Intentos = 0;
             IdiomaSesion = Usuario.Idioma;
             LectorDatos.Datos.ActualizarIntentos(Usuario.Intentos, Usuario.DNI);
-            //Usuario.Permisos = GestorPermiso.Instancia.CargarPermisosUsuario(pUsuario.DNI);
+            if(Usuario.Perfil != "Administrador General") Usuario.PerfilUsuario = (PermisoCompuesto)PermisosBD.Instancia.ObtenerPerfilesRelaciones().Find(x => x.Nombre == Usuario.Perfil);
+        }
+        public bool TienePermiso(string nombrePermiso)
+        {
+            if (Usuario.Perfil == nombrePermiso)
+                return true;
+            // Recorremos todos los permisos hijos recursivamente
+            foreach (Permiso p in Usuario.PerfilUsuario.ObtenerHijosRecursivo())
+            {
+                if (p.Nombre == nombrePermiso)
+                    return true;
+            }
+            return false;
         }
         public void LogOut()
         {
@@ -39,12 +51,11 @@ namespace SERVICIOS
                 LectorDatos.Datos.ActualizarIdiomaUsuario(IdiomaSesion, Usuario);
                 Usuario = null;
             }
-        }
+        }        
         public bool IsLogueado()
         {
             return Usuario == null ? false : true;
-        }
-        
+        }        
         public bool Verificar(string pEmail, string pContra)
         {
             return GestorBD.Instancia.ValidarUsuario(pEmail, pContra);
@@ -56,7 +67,7 @@ namespace SERVICIOS
         public void EstablecerIdioma(string nuevoIdioma)
         {
             IdiomaSesion = nuevoIdioma;
-            Traductor.Instancia.CargarTraducciones(this, nuevoIdioma);
+            Traductor.Instancia.CargarTraducciones(nuevoIdioma);
         }
     }
 }

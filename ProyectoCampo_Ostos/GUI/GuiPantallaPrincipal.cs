@@ -23,32 +23,28 @@ namespace GUI
         }
         private void GuiPantallaPrincipal_Load(object sender, EventArgs e)
         {
+            StripMenuPortugues.Tag = null;
             Traductor.Instancia.Suscribir(this);
             Traductor.Instancia.Notificar(Sesion.Instancia.Usuario.Idioma);
             ActualizarIdioma();
-            Vista();
+            if(Sesion.Instancia.Usuario.Perfil != "Administrador General") ValidarPermisosMenu(menuStrip2.Items);
         }
-        #region Funciones        
-        /*private void SuscribirFormularios()
-        {            
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiAsignar());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiFactura());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiPermisos());
-            Traductor.Instancia.Suscribir(GestorFormulario.Instancia.GetGuiContrasenia());
-        }*/
-        public void Vista()
+        #region Funciones               
+        
+        private void ValidarPermisosMenu(ToolStripItemCollection items)
         {
-            if(Sesion.Instancia.Usuario.Tipo == "Vendedor")
+            foreach (ToolStripItem item in items)
             {
-                adminMenu.Visible = false;
-            }
-            else if(Sesion.Instancia.Usuario.Tipo == "Cajero")
-            {
-                adminMenu.Visible = false;
-            }
-            else
-            {
-
+                if (item.Tag != null)
+                {
+                    string permisoNecesario = item.Tag.ToString();
+                    bool tienePermiso = Sesion.Instancia.TienePermiso(permisoNecesario);
+                    item.Visible = tienePermiso;
+                }
+                if (item is ToolStripMenuItem menuItem && menuItem.DropDownItems.Count > 0)
+                {
+                    ValidarPermisosMenu(menuItem.DropDownItems);
+                }
             }
         }
         #endregion
@@ -162,10 +158,12 @@ namespace GUI
         }        
         private void TraducirLabels()
         {
-            string T1 = Traducir("labelUsuario");
-            string T2 = Traducir("labelRol");
-            labelSesion.Text = T1.Replace("{usuario}", $"{Sesion.Instancia.Usuario.Nombre} {Sesion.Instancia.Usuario.Apellido}") + Environment.NewLine +
-                          T2.Replace("{rol}", Sesion.Instancia.Usuario.Tipo);
+            string usuario = Traducir("labelUsuario");
+            string rol = Traducir("labelRol");
+            labelSesion.Text = usuario.Replace("{usuario}", $"{Sesion.Instancia.Usuario.Nombre} {Sesion.Instancia.Usuario.Apellido}") + Environment.NewLine +
+                          rol.Replace("{rol}", Sesion.Instancia.Usuario.Perfil);
+            string bienvenida = Traducir("lbBienvenida");
+            lbBienvenida.Text = bienvenida;
         }
         private string Traducir(string paraTraducir)
         {
@@ -176,9 +174,13 @@ namespace GUI
             DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
             if(Confirmacion == DialogResult.Yes)
             {
-                Traductor.Instancia.Notificar("Español");
-                Sesion.Instancia.Usuario.Idioma = "Español";
-                MessageBox.Show("Idioma cambiado correctamente");
+                if(Sesion.Instancia.ObtenerIdiomaSesion() != "Español")
+                {
+                    Traductor.Instancia.Notificar("Español");
+                    Sesion.Instancia.Usuario.Idioma = "Español";
+                    MessageBox.Show(Traducir("MsgCambioIdiomaOK"));
+                }
+                else { MessageBox.Show(Traducir("MsgMismoIdioma")); }
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -187,8 +189,13 @@ namespace GUI
             DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
-                Traductor.Instancia.Notificar("Ingles");
-                Sesion.Instancia.Usuario.Idioma = "Ingles";
+                if (Sesion.Instancia.ObtenerIdiomaSesion() != "Ingles")
+                {
+                    Traductor.Instancia.Notificar("Ingles");
+                    Sesion.Instancia.Usuario.Idioma = "Ingles";
+                    MessageBox.Show(Traducir("MsgCambioIdiomaOK"));
+                }
+                else { MessageBox.Show(Traducir("MsgMismoIdioma")); }
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -197,8 +204,13 @@ namespace GUI
             DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
-                Traductor.Instancia.Notificar("Francés");
-                Sesion.Instancia.Usuario.Idioma = "Francés";
+                if (Sesion.Instancia.ObtenerIdiomaSesion() != "Francés")
+                {
+                    Traductor.Instancia.Notificar("Francés");
+                    Sesion.Instancia.Usuario.Idioma = "Francés";
+                    MessageBox.Show(Traducir("MsgCambioIdiomaOK"));
+                }
+                else { MessageBox.Show(Traducir("MsgMismoIdioma")); }
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -207,8 +219,13 @@ namespace GUI
             DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
-                Traductor.Instancia.Notificar("Alemán");
-                Sesion.Instancia.Usuario.Idioma = "Alemán";
+                if (Sesion.Instancia.ObtenerIdiomaSesion() != "Alemán")
+                {
+                    Traductor.Instancia.Notificar("Alemán");
+                    Sesion.Instancia.Usuario.Idioma = "Alemán";
+                    MessageBox.Show(Traducir("MsgCambioIdiomaOK"));
+                }
+                else { MessageBox.Show(Traducir("MsgMismoIdioma")); }
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }
@@ -217,8 +234,13 @@ namespace GUI
             DialogResult Confirmacion = MessageBox.Show(Traducir("MsgIdioma"), "", MessageBoxButtons.YesNo);
             if (Confirmacion == DialogResult.Yes)
             {
-                Traductor.Instancia.Notificar("Portugués");
-                Sesion.Instancia.Usuario.Idioma = "Portugués";
+                if (Sesion.Instancia.ObtenerIdiomaSesion() != "Portugués")
+                {
+                    Traductor.Instancia.Notificar("Portugués");
+                    Sesion.Instancia.Usuario.Idioma = "Portugués";
+                    MessageBox.Show(Traducir("MsgCambioIdiomaOK"));
+                }
+                else { MessageBox.Show(Traducir("MsgMismoIdioma")); }
             }
             else { MessageBox.Show(Traducir("MsgIdiomaCancelado")); }
         }

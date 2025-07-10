@@ -98,9 +98,9 @@ namespace GUI
                         }
                         else { MessageBox.Show(Traducir("MsgCamposVacios")); }
                     }
-                    else { MessageBox.Show("El DNI debe tener 8 digitos"); }
+                    else { MessageBox.Show(Traducir("MsgDigitos")); }
                 }
-                else { MessageBox.Show("El cliente ya existe"); }
+                else { MessageBox.Show(Traducir("MsgClienteExistente")); }
             }
             else { MessageBox.Show(Traducir("MsgCamposVacios")); }
         }        
@@ -120,7 +120,7 @@ namespace GUI
                     {
                         if (!string.IsNullOrWhiteSpace(tbEmailCliente.Text) && EsEmailValido(tbEmailCliente.Text))
                         {
-                            DialogResult Confirmacion = MessageBox.Show("Desea modificar el cliente?", "", MessageBoxButtons.YesNo);
+                            DialogResult Confirmacion = MessageBox.Show(Traducir("MsgSolicitudMod"), "", MessageBoxButtons.YesNo);
                             if (Confirmacion == DialogResult.Yes)
                             {
                                 Cliente C = GestorCliente.Instancia.ObtenerClientes().Find(x => x.DNI == int.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString()));
@@ -135,7 +135,7 @@ namespace GUI
                             }
                             else if (Confirmacion == DialogResult.No)
                             {
-                                MessageBox.Show("Modificacion cancelada");
+                                MessageBox.Show(Traducir("MsgModClienteCancelada"));
                                 tbDniCliente.Enabled = true;
                                 LimpiarTextBox();
                             }

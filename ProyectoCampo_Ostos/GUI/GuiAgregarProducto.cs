@@ -56,7 +56,7 @@ namespace GUI
             List<Producto> productosCarrito = GestorCarrito.Instancia.ObtenerProductos();
             foreach(var prod in productosCarrito)
             {
-                Carrito.Items.Add($"{prod.Codigo} - {prod.Nombre} - {prod.Precio} - Cantidad: {prod.CantidadEnCarrito}");
+                Carrito.Items.Add($"{prod.Codigo} - {prod.Nombre} - {prod.Precio} - {Traducir("Cantidad")}: {prod.CantidadEnCarrito}");
             }
         }
         #endregion

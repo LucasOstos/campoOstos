@@ -76,6 +76,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Location = new System.Drawing.Point(12, 29);
+            this.textBox1.MaxLength = 8;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(167, 23);
@@ -216,17 +217,18 @@
             // 
             this.tbNumTarjeta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbNumTarjeta.Location = new System.Drawing.Point(947, 165);
+            this.tbNumTarjeta.MaxLength = 16;
             this.tbNumTarjeta.Name = "tbNumTarjeta";
             this.tbNumTarjeta.PasswordChar = '*';
             this.tbNumTarjeta.Size = new System.Drawing.Size(122, 20);
             this.tbNumTarjeta.TabIndex = 15;
-            this.tbNumTarjeta.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             this.tbNumTarjeta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
             // 
             // tbFechaVencimiento
             // 
             this.tbFechaVencimiento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFechaVencimiento.Location = new System.Drawing.Point(795, 229);
+            this.tbFechaVencimiento.MaxLength = 5;
             this.tbFechaVencimiento.Name = "tbFechaVencimiento";
             this.tbFechaVencimiento.Size = new System.Drawing.Size(117, 20);
             this.tbFechaVencimiento.TabIndex = 16;
@@ -237,11 +239,11 @@
             // 
             this.tbCodSeguridad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbCodSeguridad.Location = new System.Drawing.Point(947, 229);
+            this.tbCodSeguridad.MaxLength = 3;
             this.tbCodSeguridad.Name = "tbCodSeguridad";
             this.tbCodSeguridad.PasswordChar = '*';
             this.tbCodSeguridad.Size = new System.Drawing.Size(122, 20);
             this.tbCodSeguridad.TabIndex = 17;
-            this.tbCodSeguridad.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             this.tbCodSeguridad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             // 
             // labelTipoTarjeta

@@ -31,7 +31,7 @@ namespace GUI
         {
             if(!Sesion.Instancia.IsLogueado())
             {
-                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administador General", true, true, 0, true, DateTime.Now, "Español");
+                Usuario usuarioMemoria = new Usuario(94486458, "Lucas", "Ostos", "lucas.ostos28@gmail.com", "c7ecd535fb00be09869188e3308b61b5108844f39f43e424d5d698930d57aa23", "Administrador General", true, true, 0, true, DateTime.Now, "Español");
                 if (textBox1.Text == "lucas.ostos28@gmail.com" && textBox2.Text == "usuarioMemoria")
                 {
                     Sesion.Instancia.LogIn(usuarioMemoria);

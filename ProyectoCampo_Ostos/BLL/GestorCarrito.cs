@@ -1,4 +1,5 @@
 ﻿using BE;
+using DAL;
 using SERVICIOS;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace BLL
             {
                 producto.Cantidad -= producto.CantidadEnCarrito;
                 GestorProducto.Instancia.DisminuirStock(producto.Codigo, producto.Cantidad);
+                LectorDatos.Datos.GuardarCarrito(carrito);
             }
         }
         public void BorrarCarrito()

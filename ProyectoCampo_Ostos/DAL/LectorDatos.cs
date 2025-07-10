@@ -33,6 +33,7 @@ namespace DAL
                 {
                     while (DR.Read())
                     {
+                        
                         Usuario U = new Usuario(int.Parse(DR[0].ToString()), DR[1].ToString(), DR[2].ToString(), DR[3].ToString(), DR[4].ToString(),
                                                 DR[5].ToString(), Convert.ToBoolean(DR[6].ToString()), Convert.ToBoolean(DR[7].ToString()), int.Parse(DR[8].ToString()), Convert.ToBoolean(DR[9].ToString()), Convert.ToDateTime(DR[10].ToString()), DR[11].ToString());
                         listaUsuarios.Add(U);
@@ -72,7 +73,7 @@ namespace DAL
                 CM.Parameters.AddWithValue("@Apellido", pUsuario.Apellido);
                 CM.Parameters.AddWithValue("@Email", pUsuario.Email);
                 CM.Parameters.AddWithValue("@Contrasenia", pUsuario.Contraseña);
-                CM.Parameters.AddWithValue("@Tipo", pUsuario.Tipo);
+                CM.Parameters.AddWithValue("@Tipo", pUsuario.Perfil);
                 CM.Parameters.AddWithValue("@isHabilitado", pUsuario.IsHabilitado);
                 CM.Parameters.AddWithValue("@Estado", pUsuario.Estado);
                 CM.Parameters.AddWithValue("@Intentos", pUsuario.Intentos);
@@ -103,7 +104,7 @@ namespace DAL
                 CM.Parameters.AddWithValue("@Nombre", usuarioModificado.Nombre);
                 CM.Parameters.AddWithValue("@Apellido", usuarioModificado.Apellido);
                 CM.Parameters.AddWithValue("@Email", usuarioModificado.Email);
-                CM.Parameters.AddWithValue("@Tipo", usuarioModificado.Tipo);
+                CM.Parameters.AddWithValue("@Tipo", usuarioModificado.Perfil);
                 CM.Parameters.AddWithValue("@Estado", usuarioModificado.Estado);
                 GestorBD.Instancia.AbrirConexion();
                 CM.ExecuteNonQuery();
@@ -336,7 +337,6 @@ namespace DAL
             }
             return numero;
         }
-
         public void GuardarFactura(Cliente pCliente, Factura pFactura)
         {
             string query = "INSERT INTO Factura (NumFactura, DNICliente, FechaEmision, Total) VALUES (@NumFactura, @DNICliente, @FechaEmision, @Total)";
@@ -357,6 +357,33 @@ namespace DAL
                     cmDetalle.Parameters.AddWithValue("@NumFactura", pFactura.NumFactura);
                     cmDetalle.Parameters.AddWithValue("@CodProducto", detale.Producto.Codigo);
                     cmDetalle.ExecuteNonQuery();
+                }
+                transaccion.Commit();
+                GestorBD.Instancia.CerrarConexion();
+            }
+        }
+        #endregion
+
+        #region CARRITO
+        public void GuardarCarrito(Carrito c)
+        {
+            string query = "INSERT INTO Carrito (CodCarrito, DNICliente, ImporteTotal) VALUES (@CodCarrito, @DNICliente, @ImporteTotal)";
+            GestorBD.Instancia.AbrirConexion();
+            SqlTransaction transaccion = GestorBD.Instancia.ReturnConexion().BeginTransaction();
+            using (SqlCommand CM = new SqlCommand(query, GestorBD.Instancia.ReturnConexion(), transaccion))
+            {
+                CM.Parameters.AddWithValue("@CodCarrito", c.CodCarrito);
+                CM.Parameters.AddWithValue("@DNICliente", c.Duenio.DNI);
+                CM.Parameters.AddWithValue("@ImporteTotal", c.ImporteTotal);
+
+                CM.ExecuteNonQuery();
+
+                foreach (Producto p in c.productosCarrito)
+                {
+                    SqlCommand cmProducto = new SqlCommand("INSERT INTO CarritoProducto (CodCarrito, CodProducto) VALUES (@CodCarrito, @CodProducto)", GestorBD.Instancia.ReturnConexion(), transaccion);
+                    cmProducto.Parameters.AddWithValue("@CodCarrito", c.CodCarrito);
+                    cmProducto.Parameters.AddWithValue("@CodProducto", p.Codigo);
+                    cmProducto.ExecuteNonQuery();
                 }
                 transaccion.Commit();
                 GestorBD.Instancia.CerrarConexion();

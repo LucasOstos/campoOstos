@@ -1,15 +1,17 @@
-﻿using BE;
-using BLL;
-using SERVICIOS;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BE;
+using BLL;
+using SERVICIOS;
 
 namespace GUI
 {
@@ -36,7 +38,7 @@ namespace GUI
                 {
                     if(!(radioButtonEfectivo.Checked || radioButtonTarjeta.Checked))
                     {
-                        MessageBox.Show("Debe seleccionar un método de pago");
+                        MessageBox.Show(Traducir("MsgMetodoVacio"));
                     }
                     else
                     {
@@ -45,25 +47,29 @@ namespace GUI
                             if (string.IsNullOrWhiteSpace(textBox2.Text)) MessageBox.Show(Traducir("MsgMontoNulo"));
                             else
                             {
-                                if (int.Parse(textBox2.Text) >= int.Parse(UltimaFila.Cells[UltimaFila.Cells.Count - 1].Value.ToString()))
+                                if(!textBox2.Text.StartsWith("-"))
                                 {
-                                    DialogResult Confirmacion = MessageBox.Show(Traducir("MsgConfirmarCobro"), "", MessageBoxButtons.YesNo);
-                                    if (Confirmacion == DialogResult.Yes)
+                                    if (int.Parse(textBox2.Text) >= int.Parse(UltimaFila.Cells[UltimaFila.Cells.Count - 1].Value.ToString()))
                                     {
-                                        GestorCarrito.Instancia.CobrarVenta();
-                                        GestorCarrito.Instancia.BorrarCarrito();
-                                        MostrarCarrito();
-                                        MessageBox.Show(Traducir("MsgCobroOK"));
+                                        DialogResult Confirmacion = MessageBox.Show(Traducir("MsgConfirmarCobro"), "", MessageBoxButtons.YesNo);
+                                        if (Confirmacion == DialogResult.Yes)
+                                        {
+                                            GestorCarrito.Instancia.CobrarVenta();
+                                            GestorCarrito.Instancia.BorrarCarrito();
+                                            MostrarCarrito();
+                                            MessageBox.Show(Traducir("MsgCobroOK"));
+                                        }
+                                        else if (Confirmacion == DialogResult.No)
+                                        {
+                                            MessageBox.Show(Traducir("MsgCobroCancelado"));
+                                        }
                                     }
-                                    else if (Confirmacion == DialogResult.No)
+                                    else
                                     {
-                                        MessageBox.Show(Traducir("MsgCobroCancelado"));
+                                        MessageBox.Show(Traducir("MsgMontoInsuficiente"));
                                     }
                                 }
-                                else
-                                {
-                                    MessageBox.Show(Traducir("MsgMontoInsuficiente"));
-                                }
+                                else { MessageBox.Show(Traducir("MsgMontoNegativo")); }
                             }
                         }
                         else if (radioButtonTarjeta.Checked == true)
@@ -74,18 +80,34 @@ namespace GUI
                             }
                             else
                             {
-                                DialogResult Confirmacion = MessageBox.Show(Traducir("MsgConfirmarCobro"), "", MessageBoxButtons.YesNo);
-                                if (Confirmacion == DialogResult.Yes)
+                                if(tbNumTarjeta.Text.Length == 16)
                                 {
-                                    GestorCarrito.Instancia.CobrarVenta();
-                                    GestorCarrito.Instancia.BorrarCarrito();
-                                    MostrarCarrito();
-                                    MessageBox.Show(Traducir("MsgCobroOK"));
+                                    if (tbCodSeguridad.Text.Length == 3)
+                                    {
+                                        if(FormatoFecha(tbFechaVencimiento.Text))
+                                        {
+                                            if (FechaVencimientoValida(tbFechaVencimiento.Text))
+                                            {
+                                                DialogResult Confirmacion = MessageBox.Show(Traducir("MsgConfirmarCobro"), "", MessageBoxButtons.YesNo);
+                                                if (Confirmacion == DialogResult.Yes)
+                                                {
+                                                    GestorCarrito.Instancia.CobrarVenta();
+                                                    GestorCarrito.Instancia.BorrarCarrito();
+                                                    MostrarCarrito();
+                                                    MessageBox.Show(Traducir("MsgCobroOK"));
+                                                }
+                                                else if (Confirmacion == DialogResult.No)
+                                                {
+                                                    MessageBox.Show(Traducir("MsgCobroCancelado"));
+                                                }
+                                            }
+                                            else { MessageBox.Show(Traducir("MsgTarjetaVencida")); }
+                                        }
+                                        else { MessageBox.Show(Traducir("MsgFormatoFechaInvalido")); }
+                                    }
+                                    else { MessageBox.Show(Traducir("MsgCodigoSeguridadInvalido")); }
                                 }
-                                else if (Confirmacion == DialogResult.No)
-                                {
-                                    MessageBox.Show(Traducir("MsgCobroCancelado"));
-                                }
+                                else { MessageBox.Show(Traducir("MsgNumeroTarjetaInvalido")); }
                             }
                         }
                     }                    
@@ -98,25 +120,24 @@ namespace GUI
         }        
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                MessageBox.Show(Traducir("MsgDniNulo"));
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 int dniCliente = int.Parse(textBox1.Text);
-                Carrito carrito = GestorCarrito.Instancia.BuscarCarritoPorDNI(dniCliente);
-                if (carrito != null)
+                Cliente c = GestorCliente.Instancia.ObtenerClientes().Find(x => x.DNI == dniCliente);
+                if(c != null)
                 {
-                    MostrarProductos(carrito.productosCarrito);
-                    string T1 = Traducir("label1");
-                    label1.Text = T1.Replace("{cliente}", $"{carrito.Duenio.Nombre} {carrito.Duenio.Apellido}").ToUpper();
+                    Carrito carrito = GestorCarrito.Instancia.BuscarCarritoPorDNI(dniCliente);
+                    if (carrito != null)
+                    {
+                        MostrarProductos(carrito.productosCarrito);
+                        string T1 = Traducir("label1");
+                        label1.Text = T1.Replace("{cliente}", $"{carrito.Duenio.Nombre} {carrito.Duenio.Apellido}").ToUpper();
+                    }
+                    else { MessageBox.Show(Traducir($"MsgBusquedaCarrito")); }
                 }
-                else
-                {
-                    MessageBox.Show(Traducir($"MsgBusquedaCarrito"));
-                }
+                else { MessageBox.Show(Traducir("MsgClienteNoRegistrado")); }
             }
+            else { MessageBox.Show(Traducir("MsgDniNulo")); }
         }                
         private void btnSalirVenta_Click(object sender, EventArgs e)
         {
@@ -126,16 +147,18 @@ namespace GUI
         #region Funciones
         private void MostrarProductos(List<Producto> productos)
         {
-            int precioTotal = 0;
-            int subtotal = 0;
-            dataGridView1.Rows.Clear();
-            foreach (Producto producto in productos)
+            if(productos.Count > 0)
             {
-                subtotal = producto.Precio * producto.CantidadEnCarrito;
-                precioTotal += subtotal;
-                dataGridView1.Rows.Add(producto.Codigo, producto.Nombre, producto.Tipo, producto.Precio, producto.CantidadEnCarrito, subtotal, "");
+                int subtotal = 0;
+                dataGridView1.Rows.Clear();
+                foreach (Producto producto in productos)
+                {
+                    subtotal = producto.Precio * producto.CantidadEnCarrito;
+                    GestorCarrito.Instancia.carrito.ImporteTotal += subtotal;
+                    dataGridView1.Rows.Add(producto.Codigo, producto.Nombre, producto.Tipo, producto.Precio, producto.CantidadEnCarrito, subtotal, "");
+                }
+                dataGridView1.Rows.Add("", "", "", "", "", "", GestorCarrito.Instancia.carrito.ImporteTotal);
             }
-            dataGridView1.Rows.Add("","","","","", "", precioTotal);
         }
         private void MostrarCarrito()
         {
@@ -144,6 +167,22 @@ namespace GUI
             {
                 dataGridView1.Rows.Add(producto.Codigo, producto.Nombre, producto.Tipo, producto.Precio, producto.CantidadEnCarrito);
             }
+        }
+        private bool FormatoFecha(string fecha)
+        {
+            Regex formatoValido = new Regex(@"^(0[1-9]|1[0-2])\/\d{2}$");
+            if (formatoValido.IsMatch(fecha)) return true;
+            return false;
+        }
+        private bool FechaVencimientoValida(string fecha)
+        {
+            if (DateTime.TryParseExact(fecha, "MM/yy", null, DateTimeStyles.None, out DateTime fechaVencimiento))
+            {
+                //Esta linea lo que hace es ajustar la fecha ingresada al ultimo dia del mes ingresado. Ej: si ingreso 07/25, la linea de abajo lo ajusta a 31/07/25
+                fechaVencimiento = new DateTime(fechaVencimiento.Year, fechaVencimiento.Month, DateTime.DaysInMonth(fechaVencimiento.Year, fechaVencimiento.Month));
+                return fechaVencimiento >= DateTime.Today;
+            }
+            return false;
         }
         #endregion
 
@@ -186,16 +225,7 @@ namespace GUI
         }
         #endregion
 
-        #region TextBox 
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-            if (tbNumTarjeta.Text.Length > 16)
-            {
-                
-                tbNumTarjeta.Text = tbNumTarjeta.Text.Substring(0, 16);
-                tbNumTarjeta.SelectionStart = tbNumTarjeta.Text.Length;
-            }
-        }
+        #region TextBox         
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
@@ -203,14 +233,7 @@ namespace GUI
                 e.Handled = true;
             }
         }
-        private void textBox6_TextChanged(object sender, EventArgs e)
-        {
-            if (tbCodSeguridad.Text.Length > 3)
-            {
-                tbCodSeguridad.Text = tbCodSeguridad.Text.Substring(0, 3);
-                tbCodSeguridad.SelectionStart = tbCodSeguridad.Text.Length;
-            }
-        }
+        
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
@@ -220,20 +243,16 @@ namespace GUI
         }
         private void textBox5_TextChanged(object sender, EventArgs e)
         {            
-            if (tbFechaVencimiento.Text.Length > 5)
+            if (tbFechaVencimiento.Text.Length >= 2 && !tbFechaVencimiento.Text.Contains("/"))
             {
-                tbFechaVencimiento.Text = tbFechaVencimiento.Text.Substring(0, 5);
-                tbFechaVencimiento.SelectionStart = tbFechaVencimiento.Text.Length;
-            }         
-            if (tbFechaVencimiento.Text.Length == 2 && !tbFechaVencimiento.Text.Contains("/"))
-            {
-                tbFechaVencimiento.Text = tbFechaVencimiento.Text + "/";
+                tbFechaVencimiento.Text += "/";
                 tbFechaVencimiento.SelectionStart = tbFechaVencimiento.Text.Length;
             }
+            if (tbFechaVencimiento.Text.Length == 3 && tbFechaVencimiento.Text.Contains("/")) { tbFechaVencimiento.SelectionStart = tbFechaVencimiento.Text.Length; }
         }
         private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '/' && e.KeyChar != (char)Keys.Back)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
             }

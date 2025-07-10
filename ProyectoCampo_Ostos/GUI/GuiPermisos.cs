@@ -103,14 +103,32 @@ namespace GUI
                 }
             }
         }
+        private void MostrarPermisosFamilia()
+        {
+            string nombreFamilia = cbFamilias.Text;
+            Permiso familiaSeleccionado = GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombreFamilia);
+
+            if (familiaSeleccionado != null)
+            {
+                listBoxPermisosFamilia.Items.Clear();
+                List<string> permisos = ListarPermisosRecursivo(familiaSeleccionado);
+                foreach (var nombrePermiso in permisos)
+                {
+                    if (nombrePermiso != cbFamilias.Text)
+                    {
+                        listBoxPermisosFamilia.Items.Add(nombrePermiso);
+                    }
+                }
+            }
+        }
         private void LimpiarDatos()
         {            
             tbNombrePerfil.Clear();
             listBoxPermisosPerfil.Items.Clear();
         }
-        private bool PermisoYaExisteEnLista(Permiso permisoNuevo)
+        private bool PermisoYaExisteEnLista(Permiso permisoNuevo, ListBox lb)
         {
-            foreach (object item in listBoxPermisosPerfil.Items)
+            foreach (object item in lb.Items)
             {
                 if (item is Permiso existente)
                 {
@@ -165,14 +183,14 @@ namespace GUI
                         }
                         GestorPermiso.Instancia.CrearPerfil(perfilNuevo);
                         LimpiarDatos();
-                        MessageBox.Show("Perfil creado con éxito");
+                        MessageBox.Show(Traducir("MsgPerfilCreado"));
                         CargarPerfiles();
                     }
-                    else { MessageBox.Show("El perfil ya existe"); LimpiarDatos(); }
+                    else { MessageBox.Show(Traducir("MsgPerfilExistente")); LimpiarDatos(); }
                 }
-                else { MessageBox.Show("Debe agregar al menos un permiso al perfil."); }
+                else { MessageBox.Show(Traducir("MsgSinPermisos")); }
             }
-            else { MessageBox.Show("Debe ingresar un nombre para el perfil."); }
+            else { MessageBox.Show(Traducir("MsgSinNombre")); }
             
         }
         private void btnAgregarPermisosPerfil_Click(object sender, EventArgs e)
@@ -185,23 +203,15 @@ namespace GUI
                     bool esFamilia = itemPermiso.StartsWith("[Familia]");
                     string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
                     Permiso seleccionado = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
-                    if (!PermisoYaExisteEnLista(seleccionado))
+                    if (!PermisoYaExisteEnLista(seleccionado, listBoxPermisosPerfil))
                     {
-                        if(seleccionado.EsCompuesto())
-                        {
-                            listBoxPermisosPerfil.Items.Add(seleccionado);
-                            foreach (Permiso p in seleccionado.ObtenerHijos())
-                            {
-                                listBoxPermisosPerfil.Items.Add(p);
-                            }
-                        }
-                        else { listBoxPermisosPerfil.Items.Add(seleccionado); }
+                        listBoxPermisosPerfil.Items.Add(seleccionado);
                     }
-                    else { MessageBox.Show("El permiso ya fue agregado."); }
+                    else { MessageBox.Show(Traducir("MsgPermisoAgregado")); }
                 }
-                else { MessageBox.Show("Debe seleccionar un permiso"); }
+                else { MessageBox.Show(Traducir("MsgPermisoNoElegido")); }
             }
-            else if(cbPerfiles.SelectedItem != null) //MODIFICANDO UN PERFIL
+            else //MODIFICANDO UN PERFIL
             {
                 string nombrePerfil = cbPerfiles.Text;
                 Permiso perfil = GestorPermiso.Instancia.Perfiles().Find(p => p.Nombre == nombrePerfil);
@@ -209,27 +219,31 @@ namespace GUI
                 bool esFamilia = itemPermiso.StartsWith("[Familia]");
                 string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
                 Permiso permiso = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
-                if (!GestorPermiso.Instancia.PermisoExistente(perfil.Codigo, permiso))
+                if (!GestorPermiso.Instancia.PermisoExistentePerfil(perfil.Codigo, permiso))
                 {
                     perfil.Agregar(permiso);
                     GestorPermiso.Instancia.AgregarPermisosPerfil(perfil.Codigo, permiso);
                     MostrarPermisosPerfil();
                 }
-                else { MessageBox.Show("El permiso o familia ya está asignada al perfil o a una familia incluida en el perfil."); }
+                else { MessageBox.Show(Traducir("MsgYaAgregado")); }
             }            
         }
         private void btnQuitarPermisosPerfil_Click(object sender, EventArgs e)
         {
             string nombrePerfil = cbPerfiles.Text;
             Permiso perfil = GestorPermiso.Instancia.Perfiles().Find(p => p.Nombre == nombrePerfil);
-            string nombrePermiso = listBoxPermisosPerfil.Text;
-            Permiso permiso = perfil.ObtenerHijos().Find(p => p.Nombre == nombrePermiso);
-            if (permiso != null)
+            if(perfil != null)
             {
-                perfil.Quitar(permiso);
-                GestorPermiso.Instancia.QuitarPermisosPerfil(perfil.Codigo, permiso);
-                MostrarPermisosPerfil();
+                string nombrePermiso = listBoxPermisosPerfil.Text;
+                Permiso permiso = perfil.ObtenerHijos().Find(p => p.Nombre == nombrePermiso);
+                if (permiso != null)
+                {
+                    perfil.Quitar(permiso);
+                    GestorPermiso.Instancia.QuitarPermisosPerfil(perfil.Codigo, permiso);
+                    MostrarPermisosPerfil();
+                }
             }
+            else { listBoxPermisosPerfil.Items.Remove(listBoxPermisosPerfil.SelectedItem); }
         }
         private void btnBorrarPerfil_Click(object sender, EventArgs e)
         {
@@ -237,34 +251,96 @@ namespace GUI
             Permiso perfil = GestorPermiso.Instancia.Perfiles().Find(p => p.Nombre == nombrePerfil);
             GestorPermiso.Instancia.EliminarPerfil(perfil);
             LimpiarDatos();
-            MessageBox.Show("Perfil eliminado correctamente.");
+            MessageBox.Show(Traducir("MsgPerfilEliminado"));
             CargarPerfiles();
         }
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
-            /*if (tbNombrePerfil.Text == "")
+            string nombreFamilia = tbNombreFamilia.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(nombreFamilia))
             {
-                MessageBox.Show(Traducir("MsgNombrePermisoVacio"));
+                if (listBoxPermisosFamilia.Items.Count > 0)
+                {
+                    if (GestorPermiso.Instancia.Familias().Find(x => x.Nombre == nombreFamilia) == null)
+                    {
+                        Permiso familiaNueva = new PermisoCompuesto(0, nombreFamilia);
+                        foreach (Permiso p in listBoxPermisosFamilia.Items)
+                        {
+                            familiaNueva.Agregar(p);
+                        }
+                        GestorPermiso.Instancia.CrearFamilia(familiaNueva);
+                        LimpiarDatos();
+                        MessageBox.Show(Traducir("MsgFamiliaCreada"));
+                        CargarFamilias();
+                    }
+                    else { MessageBox.Show(Traducir("MsgFamiliaExistente")); LimpiarDatos(); }
+                }
+                else { MessageBox.Show(Traducir("MsgSinPermisos")); }
+            }
+            else { MessageBox.Show(Traducir("MsgSinNombre")); }
+        }
+        private void btnAgregarPermisosFamilia_Click(object sender, EventArgs e)
+        {
+            if(cbFamilias.SelectedItem == null)
+            {
+                if(lbPermisosFamilia.SelectedItem != null)
+                {
+                    string itemPermiso = lbPermisosFamilia.SelectedItem.ToString();
+                    bool esFamilia = itemPermiso.StartsWith("[Familia]");
+                    string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
+                    Permiso seleccionado = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
+                    if(!PermisoYaExisteEnLista(seleccionado, listBoxPermisosFamilia))
+                    {
+                        listBoxPermisosFamilia.Items.Add(seleccionado);
+                    }
+                    else { MessageBox.Show(Traducir("MsgPermisoAgregado")); }
+                }
+                else { MessageBox.Show(Traducir("MsgPermisoNoElegido")); }
             }
             else
             {
-                if (checkedListBox1.Items.Contains(tbNombrePerfil.Text))
+                string nombreFamilia = cbFamilias.Text;
+                Permiso familia = GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombreFamilia);
+                string itemPermiso = lbPermisosFamilia.SelectedItem.ToString();
+                bool esFamilia = itemPermiso.StartsWith("[Familia]");
+                string nombrePermiso = itemPermiso.Substring(itemPermiso.IndexOf("]") + 2);
+                Permiso permiso = esFamilia ? GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombrePermiso) : GestorPermiso.Instancia.Permisos().Find(p => p.Nombre == nombrePermiso);
+                if(!GestorPermiso.Instancia.PermisoExistenteFamilia(familia.Codigo, permiso))
                 {
-                    MessageBox.Show(Traducir("MsgPermisoExistente"));
+                    familia.Agregar(permiso);
+                    GestorPermiso.Instancia.AgregarPermisosFamilia(familia.Codigo, permiso);
+                    MostrarPermisosFamilia();
                 }
-                else
-                {
-                    List<string> items = new List<string>();
-                    foreach (var CI in checkedListBox1.CheckedItems)
-                    {
-                        items.Add(CI.ToString());
-                    }
-                    GestorPermiso.Instancia.AgregarPermisoCompuesto(tbNombrePerfil.Text, items, false);
-                    MostrarPermisos();
-                    tbNombrePerfil.Clear();
-                }
-            }*/
+                else { MessageBox.Show(Traducir("MsgIncluida")); }
+            }
         }
+        private void btnQuitarPermisosFamilia_Click(object sender, EventArgs e)
+        {
+            string nombreFamilia = cbFamilias.Text;
+            Permiso familia = GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombreFamilia);
+            if (familia != null)
+            {
+                string nombrePermiso = listBoxPermisosFamilia.Text;
+                Permiso permiso = familia.ObtenerHijos().Find(p => p.Nombre == nombrePermiso);
+                if (permiso != null)
+                {
+                    familia.Quitar(permiso);
+                    GestorPermiso.Instancia.QuitarPermisosFamilia(familia.Codigo, permiso);
+                    MostrarPermisosFamilia();
+                }
+            }
+            else { listBoxPermisosFamilia.Items.Remove(listBoxPermisosFamilia.SelectedItem); }
+        }
+        private void btnBorrarFamilia_Click(object sender, EventArgs e)
+        {
+            string nombreFamilia = cbFamilias.Text;
+            Permiso familia = GestorPermiso.Instancia.Familias().Find(p => p.Nombre == nombreFamilia);
+            GestorPermiso.Instancia.EliminarFamilia(familia);
+            listBoxPermisosFamilia.Items.Clear();
+            MessageBox.Show(Traducir("MsgFamiliaEliminada"));
+            CargarFamilias();
+        }
+
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -321,6 +397,7 @@ namespace GUI
             }
         }
         #endregion
+
 
     }
 }

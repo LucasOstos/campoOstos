@@ -32,12 +32,17 @@ namespace GUI
         {
             if (!string.IsNullOrWhiteSpace(tbFacturaDNI.Text))
             {
-                if(GestorCarrito.Instancia.BuscarCarritoPorDNI(int.Parse(tbFacturaDNI.Text)) != null)
+                Cliente c = GestorCliente.Instancia.ObtenerClientes().Find(x => x.DNI == int.Parse(tbFacturaDNI.Text));
+                if(c != null)
                 {
-                    GestorFactura.Instancia.CargarFactura(int.Parse(tbFacturaDNI.Text), dgvFactura, labelDatosFactura);
-                    CargarLabels();
+                    if (GestorCarrito.Instancia.BuscarCarritoPorDNI(int.Parse(tbFacturaDNI.Text)) != null)
+                    {
+                        GestorFactura.Instancia.CargarFactura(int.Parse(tbFacturaDNI.Text), dgvFactura, labelDatosFactura);
+                        CargarLabels();
+                    }
+                    else { MessageBox.Show(Traducir("MsgClienteSinCarrito")); }
                 }
-                else { MessageBox.Show("Este cliente no tiene ningún carrito"); }
+                else { MessageBox.Show(Traducir("MsgClienteNoRegistrado")); }
             }
             else { MessageBox.Show(Traducir("MsgDniNulo")); }            
         }
@@ -58,7 +63,7 @@ namespace GUI
                 guiVenta.ShowDialog();
                 this.Close();
             }
-            else { MessageBox.Show("Factura no cargada"); }
+            else { MessageBox.Show(Traducir("MsgFacturaNoCargada")); }
         }
         
         private void botonSalirFactura_Click(object sender, EventArgs e)

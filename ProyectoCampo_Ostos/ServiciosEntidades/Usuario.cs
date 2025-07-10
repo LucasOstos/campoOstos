@@ -13,33 +13,32 @@ namespace ServiciosEntidades
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Contraseña { get; set; }
-        public string Tipo { get; set; }
+        public string Perfil {  get; set; }
         public bool IsHabilitado { get; set; }
         public bool Estado { get; set; }
         public int Intentos { get; set; }
         public bool cambioContrasenia { get; set; }
         public DateTime ultimoLogin { get; set; }
         public string Idioma {  get; set; }
-        public List<Permiso> Permisos { get; set; }
-        public Usuario(int pDNI, string pNombre, string pApellido, string pEmail, string pContraseña, string pTipo, bool pHabilitado, bool pEstado, int pIntentos, bool pCambioContrasenia, DateTime pUltimoLogin, string pIdioma)
+        public PermisoCompuesto PerfilUsuario { get; set; }
+        public Usuario(int pDNI, string pNombre, string pApellido, string pEmail, string pContraseña, string pPerfil, bool pHabilitado, bool pEstado, int pIntentos, bool pCambioContrasenia, DateTime pUltimoLogin, string pIdioma)
         {
             DNI = pDNI;
             Nombre = pNombre;
             Apellido = pApellido;
             Email = pEmail;
             Contraseña = pContraseña;
-            Tipo = pTipo;
+            Perfil = pPerfil;
             IsHabilitado = pHabilitado;
             Estado = pEstado;
             Intentos = pIntentos;
             cambioContrasenia = pCambioContrasenia;
             ultimoLogin = pUltimoLogin;
             Idioma = pIdioma;
-            Permisos = new List<Permiso>();
         }
         public Usuario()
         {
-            Permisos = new List<Permiso>();
+
         }
     }
 }

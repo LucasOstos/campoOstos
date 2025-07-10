@@ -23,7 +23,7 @@ namespace BLL
             }
         }
 
-        #region Perifles
+        #region Perfiles
         public List<Permiso> Perfiles()
         {
             return PermisosBD.Instancia.ObtenerPerfilesRelaciones();
@@ -45,17 +45,40 @@ namespace BLL
         {
             PermisosBD.Instancia.EliminarPerfil(pPermiso);
         }
-
-        public bool PermisoExistente(int codPerfil, Permiso codPermiso)
+        public bool PermisoExistentePerfil(int codPerfil, Permiso codPermiso)
         {
             return PermisosBD.Instancia.PermisoYaExisteEnPerfil(codPerfil, codPermiso);
         }
         #endregion
 
+        #region Familias
         public List<Permiso> Familias()
         {
             return PermisosBD.Instancia.ObtenerFamiliasRelaciones();
         }
+        public void CrearFamilia(Permiso pFamilia)
+        {
+            pFamilia.Codigo = PermisosBD.Instancia.ObtenerCodigoFamilia();
+            PermisosBD.Instancia.CrearFamilia(pFamilia);
+        }
+        public void AgregarPermisosFamilia(int codFamilia, Permiso pPermiso)
+        {
+            PermisosBD.Instancia.AgregarPermisoAFamilia(codFamilia, pPermiso);
+        }
+        public void QuitarPermisosFamilia(int codFamilia, Permiso pPermiso)
+        {
+            PermisosBD.Instancia.QuitarPermisoAFamilia(codFamilia, pPermiso);
+        }
+        public void EliminarFamilia(Permiso pFamilia)
+        {
+            PermisosBD.Instancia.EliminarFamilia(pFamilia);
+        }
+        public bool PermisoExistenteFamilia(int codFamilia, Permiso codPermiso)
+        {
+            return PermisosBD.Instancia.PermisoYaExisteEnFamilia(codFamilia, codPermiso);
+        }
+        #endregion
+
         public List<Permiso> Permisos()
         {
             return PermisosBD.Instancia.ObtenerPermisos();

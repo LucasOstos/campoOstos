@@ -53,9 +53,9 @@ namespace GUI
                         
                         this.Close();
                     }
-                    else { MessageBox.Show("El carrito ya tiene dueño"); }
+                    else { MessageBox.Show(Traducir("MsgCarritoConDueño")); }
                 }
-                else { MessageBox.Show("Seleccione un cliente"); }
+                else { MessageBox.Show(Traducir("MsgClienteNoElegido")); }
             }
             else { MessageBox.Show(Traducir("MsgCodigoNulo")); }
         }

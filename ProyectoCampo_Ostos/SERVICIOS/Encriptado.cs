@@ -22,6 +22,8 @@ namespace SERVICIOS
                 return instancia;
             }
         }
+        private static readonly byte[] clave = Encoding.UTF8.GetBytes("claveAES_1234567");
+        private static readonly byte[] iv = Encoding.UTF8.GetBytes("vectorInit654321");
         public string EncriptarContraseña(string contraseña) //SHA256
         {
             using (SHA256 encrypt = SHA256.Create())
@@ -35,8 +37,6 @@ namespace SERVICIOS
                 return SB.ToString();
             }
         }
-        private static readonly byte[] clave = Encoding.UTF8.GetBytes("claveAES_1234567");
-        private static readonly byte[] iv = Encoding.UTF8.GetBytes("vectorInit654321");
         public string EncriptacionReversible(string pTexto) //AES
         {
             using(Aes aes = Aes.Create())

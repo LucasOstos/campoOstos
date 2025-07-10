@@ -29,8 +29,13 @@ namespace GUI
                 doc.Add(logo);
             }
 
-            // Título
-            var titulo = new Paragraph($"FACTURA N°: {f.NumFactura}\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 18));
+            // Nombre empresa
+            Paragraph nombre = new Paragraph("BELLEZA ARGENTINA", FontFactory.GetFont(FontFactory.HELVETICA, 18));
+            nombre.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(nombre);
+
+            // Numero de factura
+            Paragraph titulo = new Paragraph($"FACTURA N°: {f.NumFactura}\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 18));
             titulo.Alignment = Element.ALIGN_LEFT;
             doc.Add(titulo);
 
@@ -42,7 +47,7 @@ namespace GUI
             // Datos del cliente
             doc.Add(new Paragraph($"DNI: {f.facturaCliente.DNI}\nNombre: {f.facturaCliente.Nombre}\nApellido: {f.facturaCliente.Apellido}\nCelular: {f.facturaCliente.Celular}\nEmail: {Encriptado.InstanceEncriptado.DesencriptacionReversible(f.facturaCliente.Email)}\n\n", FontFactory.GetFont(FontFactory.HELVETICA, 12)));
 
-            // Tabla
+            // Tabla (a partir del dgv)
             PdfPTable tabla = new PdfPTable(dgv.Columns.Count);
             tabla.WidthPercentage = 100;
 

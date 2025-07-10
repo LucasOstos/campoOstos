@@ -53,8 +53,6 @@ namespace BLL
             return LectorDatos.Datos.LeerUsuariosBloqueados();
         }
 
-
-
         public void BloquearUsuario(bool pEstado, int pDNI)
         {
             LectorDatos.Datos.BloquearUsuario(pEstado, pDNI);

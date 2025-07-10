@@ -10,7 +10,7 @@ namespace BE
     {
         public int CodCarrito { get; set; }
         public Cliente Duenio { get; set; }
-        public int ImporteTotal { get; set; }
+        public decimal ImporteTotal { get; set; }
         public List<Producto> productosCarrito;
         public Carrito()
         {            

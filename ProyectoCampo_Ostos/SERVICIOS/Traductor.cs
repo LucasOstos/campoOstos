@@ -34,7 +34,7 @@ namespace SERVICIOS
             string contenidoJson = File.ReadAllText(rutaJson);
             traducciones = JsonConvert.DeserializeObject<Dictionary<string, string>>(contenidoJson);
         }
-        public void CargarTraducciones(object sender, string nuevoIdioma)
+        public void CargarTraducciones(string nuevoIdioma)
         {
             if (File.Exists(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"..\..\..\Idiomas\{nuevoIdioma}.json"))))
             {
@@ -48,9 +48,9 @@ namespace SERVICIOS
         {
             try
             {
-                if (traducciones.Count == 0) CargarTraducciones(null, Sesion.Instancia.Usuario.Idioma);
-                string translation = "";
-                return translation = traducciones[paraTraducir];
+                if (traducciones.Count == 0) CargarTraducciones(Sesion.Instancia.Usuario.Idioma);
+                string traduccion = "";
+                return traduccion = traducciones[paraTraducir];
             }
             catch (Exception) { return paraTraducir; }
         }

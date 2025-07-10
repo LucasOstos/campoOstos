@@ -204,6 +204,7 @@
             this.btnAgregarPermisosFamilia.TabIndex = 21;
             this.btnAgregarPermisosFamilia.Text = "Agregar Permisos";
             this.btnAgregarPermisosFamilia.UseVisualStyleBackColor = true;
+            this.btnAgregarPermisosFamilia.Click += new System.EventHandler(this.btnAgregarPermisosFamilia_Click);
             // 
             // lbPermisosPerfil
             // 
@@ -252,6 +253,7 @@
             this.btnQuitarPermisosFamilia.TabIndex = 28;
             this.btnQuitarPermisosFamilia.Text = "Quitar Permisos";
             this.btnQuitarPermisosFamilia.UseVisualStyleBackColor = true;
+            this.btnQuitarPermisosFamilia.Click += new System.EventHandler(this.btnQuitarPermisosFamilia_Click);
             // 
             // btnBorrarFamilia
             // 
@@ -262,6 +264,7 @@
             this.btnBorrarFamilia.TabIndex = 27;
             this.btnBorrarFamilia.Text = "Borrar Familia";
             this.btnBorrarFamilia.UseVisualStyleBackColor = true;
+            this.btnBorrarFamilia.Click += new System.EventHandler(this.btnBorrarFamilia_Click);
             // 
             // listBoxPermisosPerfil
             // 
