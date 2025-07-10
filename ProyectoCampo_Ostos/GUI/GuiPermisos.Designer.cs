@@ -51,6 +51,7 @@
             this.btnBorrarFamilia = new System.Windows.Forms.Button();
             this.listBoxPermisosPerfil = new System.Windows.Forms.ListBox();
             this.listBoxPermisosFamilia = new System.Windows.Forms.ListBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCrearFamilia
@@ -282,12 +283,24 @@
             this.listBoxPermisosFamilia.Size = new System.Drawing.Size(157, 225);
             this.listBoxPermisosFamilia.TabIndex = 30;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Location = new System.Drawing.Point(746, 418);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(93, 23);
+            this.btnLimpiar.TabIndex = 31;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // GuiPermisos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(944, 453);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.listBoxPermisosFamilia);
             this.Controls.Add(this.listBoxPermisosPerfil);
             this.Controls.Add(this.btnQuitarPermisosFamilia);
@@ -343,5 +356,6 @@
         private System.Windows.Forms.Button btnBorrarFamilia;
         private System.Windows.Forms.ListBox listBoxPermisosPerfil;
         private System.Windows.Forms.ListBox listBoxPermisosFamilia;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

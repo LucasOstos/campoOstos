@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guicobrarventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guicobrarventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\bll\\gestorcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7E3F0F1-E6D6-4D67-8A13-92CFE76CA550}|BLL\\BLL.csproj|solutionrelative:bll\\gestorcarrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\dal\\lectordatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D742E1CA-5892-4B0C-8449-DA1B0CB6F449}|DAL\\DAL.csproj|solutionrelative:dal\\lectordatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guicobrarventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guicobrarventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31E518EA-B8E6-439A-B245-8F0E1351B522}|BE\\BE.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\be\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31E518EA-B8E6-439A-B245-8F0E1351B522}|BE\\BE.csproj|solutionrelative:be\\carrito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31E518EA-B8E6-439A-B245-8F0E1351B522}|BE\\BE.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\be\\detallefactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31E518EA-B8E6-439A-B245-8F0E1351B522}|BE\\BE.csproj|solutionrelative:be\\detallefactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|d:\\proyecto\\campoostos\\proyectocampo_ostos\\gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C843580E-6592-4D6C-A29A-07E76E9DAF8B}|GUI\\GUI.csproj|solutionrelative:gui\\guipermisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "LectorDatos.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\DAL\\LectorDatos.cs",
-              "RelativeDocumentMoniker": "DAL\\LectorDatos.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\DAL\\LectorDatos.cs",
-              "RelativeToolTip": "DAL\\LectorDatos.cs",
-              "ViewState": "AgIAAFsBAAAAAAAAAAAUwIABAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:56:53.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GestorCarrito.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BLL\\GestorCarrito.cs",
-              "RelativeDocumentMoniker": "BLL\\GestorCarrito.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BLL\\GestorCarrito.cs",
-              "RelativeToolTip": "BLL\\GestorCarrito.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAYwDUAAAA4AAAAAAAAAA==",
+              "Title": "GuiPermisos.cs",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs",
+              "ViewState": "AgIAAA0BAAAAAAAAAADwv5oBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:36:08.263Z",
+              "WhenOpened": "2025-07-10T05:05:57.973Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GuiCobrarVenta.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiCobrarVenta.cs",
-              "RelativeDocumentMoniker": "GUI\\GuiCobrarVenta.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiCobrarVenta.cs",
-              "RelativeToolTip": "GUI\\GuiCobrarVenta.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAADwv6YAAAANAAAAAAAAAA==",
+              "Title": "GuiPermisos.cs [Dise\u00F1o]",
+              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs",
+              "RelativeDocumentMoniker": "GUI\\GuiPermisos.cs",
+              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiPermisos.cs [Dise\u00F1o]",
+              "RelativeToolTip": "GUI\\GuiPermisos.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:35:18.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GuiCobrarVenta.cs [Dise\u00F1o]",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiCobrarVenta.cs",
-              "RelativeDocumentMoniker": "GUI\\GuiCobrarVenta.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\GUI\\GuiCobrarVenta.cs [Dise\u00F1o]",
-              "RelativeToolTip": "GUI\\GuiCobrarVenta.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:35:18.088Z",
+              "WhenOpened": "2025-07-10T05:05:53.254Z",
               "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Carrito.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BE\\Carrito.cs",
-              "RelativeDocumentMoniker": "BE\\Carrito.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BE\\Carrito.cs",
-              "RelativeToolTip": "BE\\Carrito.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:30:46.813Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DetalleFactura.cs",
-              "DocumentMoniker": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BE\\DetalleFactura.cs",
-              "RelativeDocumentMoniker": "BE\\DetalleFactura.cs",
-              "ToolTip": "D:\\Proyecto\\campoOstos\\ProyectoCampo_Ostos\\BE\\DetalleFactura.cs",
-              "RelativeToolTip": "BE\\DetalleFactura.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-10T04:29:47.406Z",
-              "EditorCaption": ""
             }
           ]
         }

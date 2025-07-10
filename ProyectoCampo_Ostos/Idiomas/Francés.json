@@ -231,5 +231,6 @@
     "MsgFamiliaCreada": "Famille créée avec succès",
     "MsgFamiliaExistente": "La famille existe déjà",
     "MsgFamiliaEliminada": "Famille supprimée avec succès.",
-    "MsgIncluida": "La permission ou la famille est déjà incluse directement ou indirectement dans la famille"
+    "MsgIncluida": "La permission ou la famille est déjà incluse directement ou indirectement dans la famille",
+    "btnLimpiar": "Effacer"
 }

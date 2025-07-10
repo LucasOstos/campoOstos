@@ -242,5 +242,7 @@
     "MsgFamiliaCreada": "Familia creada con éxito",
     "MsgFamiliaExistente": "La familia ya existe",
     "MsgFamiliaEliminada": "Familia eliminada correctamente.",
-    "MsgIncluida": "El permiso o familia ya está incluida en la familia directa o indirectamente"
+    "MsgIncluida": "El permiso o familia ya está incluida en la familia directa o indirectamente",
+
+    "btnLimpiar": "Limpiar"
 }

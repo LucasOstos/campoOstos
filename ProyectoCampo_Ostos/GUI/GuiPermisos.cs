@@ -126,6 +126,11 @@ namespace GUI
             tbNombrePerfil.Clear();
             listBoxPermisosPerfil.Items.Clear();
         }
+        private void LimpiarDatosFamilia()
+        {
+            tbNombreFamilia.Clear();
+            listBoxPermisosFamilia.Items.Clear();
+        }
         private bool PermisoYaExisteEnLista(Permiso permisoNuevo, ListBox lb)
         {
             foreach (object item in lb.Items)
@@ -269,9 +274,10 @@ namespace GUI
                             familiaNueva.Agregar(p);
                         }
                         GestorPermiso.Instancia.CrearFamilia(familiaNueva);
-                        LimpiarDatos();
+                        LimpiarDatosFamilia();
                         MessageBox.Show(Traducir("MsgFamiliaCreada"));
                         CargarFamilias();
+                        CargarPermisosFamilia();
                     }
                     else { MessageBox.Show(Traducir("MsgFamiliaExistente")); LimpiarDatos(); }
                 }
@@ -396,8 +402,15 @@ namespace GUI
                 }
             }
         }
+
         #endregion
 
-
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            CargarFamilias();
+            CargarPerfiles();
+            listBoxPermisosFamilia.Items.Clear();
+            listBoxPermisosPerfil.Items.Clear();
+        }
     }
 }
